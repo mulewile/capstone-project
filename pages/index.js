@@ -1,7 +1,10 @@
+import List from "@/components/List";
+
 export default function HomePage() {
   return (
     <div>
-      <h1>Hello from Next.js</h1>
+      <h1>Upcoming Events</h1>
+      <List />
     </div>
   );
 }
