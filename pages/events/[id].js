@@ -11,20 +11,19 @@ export default function EventDetails() {
   };
 
   const eventData = events.find((event) => event.id === id);
-  const { name, event, date, location, tasks, ideas, guests } = eventData;
 
   return (
     <>
       <h1>Details</h1>
       {event ? (
         <StyledCard>
-          <h2>Name: {name}</h2>
-          <h2>Event: {event}</h2>
-          <h2>Date: {date}</h2>
-          <p>Location: {location}</p>
-          <p>Tasks: {tasks}</p>
-          <p>Ideas, Message, Thoughts etc: {ideas}</p>
-          <p>Guests: {guests}</p>
+          <h2>Name: {eventData.name}</h2>
+          <h2>Event: {eventData.event}</h2>
+          <h2>Date: {eventData.date}</h2>
+          <p>Location: {eventData.location}</p>
+          <p>Tasks: {eventData.tasks}</p>
+          <p>Ideas, Message, Thoughts etc: {eventData.ideas}</p>
+          <p>Guests: {eventData.guests}</p>
         </StyledCard>
       ) : (
         <p>No event found.</p>
