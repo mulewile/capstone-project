@@ -1,5 +1,6 @@
 export const events = [
   {
+    id: "0",
     name: "Reut",
     date: "24 March 2023",
     location: "Oslo",
@@ -9,6 +10,7 @@ export const events = [
     guests: "Jasmine, Alex",
   },
   {
+    id: "1",
     name: "Asa e Giulio",
     date: "2 April 2023",
     location: "Da decidere",
@@ -18,6 +20,7 @@ export const events = [
     guests: "89",
   },
   {
+    id: "2",
     name: "Neue Fische",
     date: "17 May 2023",
     location: "Online",
