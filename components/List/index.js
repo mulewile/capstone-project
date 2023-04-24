@@ -1,6 +1,6 @@
+import uuid4 from "uuid4";
 import { StyledListItem, StyledList } from "./StyledListLayout";
 import { events } from "@/resources/events";
-import uuid4 from "uuid4";
 
 export default function List() {
   return (
