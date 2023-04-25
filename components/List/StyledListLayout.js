@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledListItem = styled.li`
-  border: 3px solid green;
+  border: 3px solid #7c677f;
   border-radius: 20px;
   padding: 1rem;
   margin: 0.25rem;
