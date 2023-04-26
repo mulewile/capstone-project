@@ -1,35 +1,28 @@
 import { useRouter } from "next/router";
-import useSWR from "swr";
 import { StyledCard } from "../../components/Card";
 import Button from "../../components/Button";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-export default function EventDetails() {
+export default function EventDetails({ events }) {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, error } = useSWR(id ? `/api/events/${id}` : null, fetcher);
+  const event = events.find((event) => event.id === id);
 
-  if (!data) {
+  if (!event) {
     return <h1>No event found.</h1>;
-  }
-
-  if (error) {
-    return <h1>Error while loading event data.</h1>;
   }
 
   return (
     <>
       <h1>Details</h1>
       <StyledCard>
-        <h2>Name: {data.name}</h2>
-        <h2>Event: {data.event}</h2>
-        <h2>Date: {data.date}</h2>
-        <p>Location: {data.location}</p>
-        <p>Tasks: {data.tasks}</p>
-        <p>Ideas, Message, Thoughts etc: {data.ideas}</p>
-        <p>Guests: {data.guests}</p>
+        <h2>Name: {event.name}</h2>
+        <h2>Event: {event.event}</h2>
+        <h2>Date: {event.date}</h2>
+        <p>Location: {event.location}</p>
+        <p>Tasks: {event.tasks}</p>
+        <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
+        <p>Guests: {event.guests}</p>
       </StyledCard>
       <Button type="button" onClick={() => router.push("/")}>
         Go Back

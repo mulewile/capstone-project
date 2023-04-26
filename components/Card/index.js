@@ -7,11 +7,13 @@ export const StyledCard = styled.article`
   padding: 1rem;
   margin: 0.25rem;
   background-color: #f9c5bd;
+
   h2 {
     font-size: 24px;
     margin-bottom: 8px;
     color: #3a4660;
   }
+
   p {
     font-size: 16px;
     margin-bottom: 8px;
