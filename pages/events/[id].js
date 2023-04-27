@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { StyledCard } from "../../components/Card";
 import Button from "../../components/Button";
+import Link from "next/link";
 
 export default function EventDetails({ events }) {
   const router = useRouter();
@@ -27,6 +28,9 @@ export default function EventDetails({ events }) {
       <Button type="button" onClick={() => router.push("/")}>
         Go Back
       </Button>
+      <Link href={`/events/${id}`}>
+        <Button type="button">Edit</Button>
+      </Link>
     </>
   );
 }

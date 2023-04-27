@@ -28,19 +28,19 @@ export default function Form({ onSubmit, onClick }) {
     <>
       <StyledForm onSubmit={onSubmit}>
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name" defaultValue={""} />
         <label htmlFor="event">Event:</label>
-        <input type="text" id="event" name="event" />
+        <input type="text" id="event" name="event" defaultValue={""} />
         <label htmlFor="date">Date:</label>
-        <input type="date" id="date" name="date" />
+        <input type="date" id="date" name="date" defaultValue={""} />
         <label htmlFor="location">Location:</label>
-        <input type="text" id="location" name="location" />
+        <input type="text" id="location" name="location" defaultValue={""} />
         <label htmlFor="tasks">Tasks:</label>
-        <textarea type="text" id="tasks" name="tasks" />
+        <textarea type="text" id="tasks" name="tasks" defaultValue={""} />
         <label htmlFor="ideas">Ideas, Message, Thoughts:</label>
-        <textarea type="text" id="ideas" name="ideas" />
+        <textarea type="text" id="ideas" name="ideas" defaultValue={""} />
         <label htmlFor="guests">Guests:</label>
-        <textarea type="text" id="guests" name="guests" />
+        <textarea type="text" id="guests" name="guests" defaultValue={""} />
         <Button type="submit">Done</Button>
       </StyledForm>
       <Button onClick={onClick}>Cancel</Button>

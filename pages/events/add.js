@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import uuid4 from "uuid4";
 import Form from "../../components/Form";
 
-export default function AddEvent({ addEvent }) {
+export default function AddEvent({ addEvent, events }) {
   const router = useRouter();
+  const { id } = router.query;
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -25,7 +26,7 @@ export default function AddEvent({ addEvent }) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit} onClick={cancelAdd} />
+      <Form onSubmit={handleSubmit} onClick={cancelAdd} events={events} />
     </>
   );
 }
