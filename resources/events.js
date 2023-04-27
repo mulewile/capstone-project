@@ -30,3 +30,10 @@ export const events = [
     guests: "?",
   },
 ];
+export function getAllEvents() {
+  return events;
+}
+
+export function getEventById(id) {
+  return events.find((event) => event.id === id);
+}
