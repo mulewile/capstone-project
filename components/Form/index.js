@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../components/Button";
+import Button from "../Button";
 
 export const StyledForm = styled.form`
   max-width: 768px;
@@ -23,27 +23,103 @@ export const StyledForm = styled.form`
   }
 `;
 
-export default function Form({ onSubmit, onClick }) {
+export default function Form({
+  onSubmit,
+  onClick,
+  isEditing,
+  eventToEdit,
+  handleUpdateEvents,
+}) {
+  function onEdit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const eventObject = Object.fromEntries(formData);
+
+    const eventData = { ...eventToEdit, ...eventObject };
+    handleUpdateEvents(eventData);
+  }
+
   return (
     <>
-      <StyledForm onSubmit={onSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" />
-        <label htmlFor="event">Event:</label>
-        <input type="text" id="event" name="event" />
-        <label htmlFor="date">Date:</label>
-        <input type="date" id="date" name="date" />
-        <label htmlFor="location">Location:</label>
-        <input type="text" id="location" name="location" />
-        <label htmlFor="tasks">Tasks:</label>
-        <textarea type="text" id="tasks" name="tasks" />
-        <label htmlFor="ideas">Ideas, Message, Thoughts:</label>
-        <textarea type="text" id="ideas" name="ideas" />
-        <label htmlFor="guests">Guests:</label>
-        <textarea type="text" id="guests" name="guests" />
-        <Button type="submit">Done</Button>
-      </StyledForm>
-      <Button onClick={onClick}>Cancel</Button>
+      {isEditing ? (
+        <>
+          <Button onClick={onClick}>Cancel</Button>
+          <StyledForm onSubmit={onEdit}>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              defaultValue={eventToEdit?.name}
+            />
+            <label htmlFor="event">Event:</label>
+            <input
+              type="text"
+              id="event"
+              name="event"
+              defaultValue={eventToEdit?.event}
+            />
+            <label htmlFor="date">Date:</label>
+            <input
+              type="date"
+              id="date"
+              name="date"
+              defaultValue={eventToEdit?.date}
+            />
+            <label htmlFor="location">Location:</label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              defaultValue={eventToEdit?.location}
+            />
+            <label htmlFor="tasks">Tasks:</label>
+            <textarea
+              type="text"
+              id="tasks"
+              name="tasks"
+              defaultValue={eventToEdit?.tasks}
+            />
+            <label htmlFor="ideas">Ideas, Message, Thoughts:</label>
+            <textarea
+              type="text"
+              id="ideas"
+              name="ideas"
+              defaultValue={eventToEdit?.ideas}
+            />
+            <label htmlFor="guests">Guests:</label>
+            <textarea
+              type="text"
+              id="guests"
+              name="guests"
+              defaultValue={eventToEdit?.guests}
+            />
+            <Button type="submit">Update</Button>
+          </StyledForm>
+        </>
+      ) : (
+        <>
+          <Button onClick={onClick}>Cancel</Button>
+          <StyledForm onSubmit={onSubmit}>
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" />
+            <label htmlFor="event">Event:</label>
+            <input type="text" id="event" name="event" />
+            <label htmlFor="date">Date:</label>
+            <input type="date" id="date" name="date" />
+            <label htmlFor="location">Location:</label>
+            <input type="text" id="location" name="location" />
+            <label htmlFor="tasks">Tasks:</label>
+            <textarea type="text" id="tasks" name="tasks" />
+            <label htmlFor="ideas">Ideas, Message, Thoughts:</label>
+            <textarea type="text" id="ideas" name="ideas" />
+            <label htmlFor="guests">Guests:</label>
+            <textarea type="text" id="guests" name="guests" />
+            <Button type="submit">Save</Button>
+          </StyledForm>
+        </>
+      )}
     </>
   );
 }
