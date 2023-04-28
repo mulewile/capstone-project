@@ -31,6 +31,10 @@ export default function App({ Component, pageProps }) {
     router.push(`/`);
   }
 
+  function handleDeleteEvent(id) {
+    setEvents(events.filter((event) => event.id !== id));
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -42,6 +46,7 @@ export default function App({ Component, pageProps }) {
         eventToEdit={eventToEdit}
         handleClickEdit={handleClickEdit}
         handleUpdateEvents={handleUpdateEvents}
+        handleDeleteEvent={handleDeleteEvent}
       />
     </>
   );

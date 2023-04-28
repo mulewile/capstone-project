@@ -2,7 +2,11 @@ import { useRouter } from "next/router";
 import { StyledCard } from "../../components/Card";
 import Button from "@/components/Button";
 
-export default function EventDetails({ handleClickEdit, events }) {
+export default function EventDetails({
+  handleClickEdit,
+  handleDeleteEvent,
+  events,
+}) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -27,7 +31,6 @@ export default function EventDetails({ handleClickEdit, events }) {
       <Button type="button" onClick={() => router.push("/")}>
         Go Back
       </Button>
-
       <Button
         type="button"
         onClick={() => {
@@ -36,6 +39,15 @@ export default function EventDetails({ handleClickEdit, events }) {
         }}
       >
         Edit
+      </Button>
+      <Button
+        type="button"
+        onClick={() => {
+          handleDeleteEvent(id);
+          router.push("/");
+        }}
+      >
+        Delete
       </Button>
     </>
   );
