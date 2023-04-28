@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { StyledCard } from "../../components/Card";
+import { StyledHeader } from "@/components/Header";
+import { StyledFooter } from "@/components/Footer";
 import Button from "@/components/Button";
 
 export default function EventDetails({
@@ -18,7 +20,7 @@ export default function EventDetails({
 
   return (
     <>
-      <h1>Details</h1>
+      <StyledHeader>Details</StyledHeader>
       <StyledCard>
         <h2>Name: {event.name}</h2>
         <h2>Event: {event.event}</h2>
@@ -49,6 +51,8 @@ export default function EventDetails({
       >
         Delete
       </Button>
+
+      <StyledFooter></StyledFooter>
     </>
   );
 }

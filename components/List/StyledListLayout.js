@@ -9,9 +9,13 @@ export const StyledListItem = styled.li`
   align-items: center;
   font-size: 16px;
   font-weight: bold;
+  background-color: #f5f5f5;
 `;
 
 export const StyledList = styled.ul`
   max-width: 768px;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  padding: 80px 0 0 0;
 `;
