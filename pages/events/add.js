@@ -4,7 +4,6 @@ import Form from "../../components/Form";
 
 export default function AddEvent({ addEvent, events }) {
   const router = useRouter();
-  const { id } = router.query;
 
   function handleSubmit(event) {
     event.preventDefault();

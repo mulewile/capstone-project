@@ -17,6 +17,7 @@
     "react-dom": "18.2.0",
     "styled-components": "^5.3.9",
     "swr": "^2.1.5",
+    "use-local-storage": "^3.0.0",
     "uuid": "^9.0.0",
     "uuid4": "^2.0.3"
   },

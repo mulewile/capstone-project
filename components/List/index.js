@@ -17,7 +17,6 @@ export default function List({ events }) {
         ))}
       </StyledList>
       <Link href={`events/add`}>
-        {" "}
         <Button>Add</Button>
       </Link>
     </>
