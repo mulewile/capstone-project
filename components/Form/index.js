@@ -3,7 +3,7 @@ import Button from "../Button";
 import { StyledHeader } from "../Header";
 import { StyledFooter } from "../Footer";
 export const StyledForm = styled.form`
-  max-width: 768px;
+  max-width: 368px;
   border: 3px solid #dcae1d;
   border-radius: 20px;
   padding: 1rem;
@@ -13,7 +13,7 @@ export const StyledForm = styled.form`
   input {
     display: grid;
     margin-bottom: 8px;
-    font-size: 16px;
+    font-size: 12px;
   }
 
   textarea {

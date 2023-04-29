@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledListItem = styled.li`
   display: grid;
   border: 3px solid #7c677f;
+  max-width: 368px;
   border-radius: 20px;
   padding: 1rem;
   margin: 0.25rem;
@@ -13,7 +14,7 @@ export const StyledListItem = styled.li`
 `;
 
 export const StyledList = styled.ul`
-  max-width: 768px;
+  max-width: 368px;
   list-style: none;
   margin: 0;
   padding: 0;

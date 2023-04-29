@@ -9,8 +9,6 @@ export default function App({ Component, pageProps }) {
   const [isEditing, setIsEditing] = useState(false);
   const [eventToEdit, setEventToEdit] = useState();
 
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
   const router = useRouter();
 
   function addEvent(newEvent) {
