@@ -5,7 +5,7 @@ export const StyledModalWrapper = styled.div`
   border-radius: 20px;
   padding: 1rem;
   margin: 0.25rem;
-  margin-top: 80%;
+  margin-top: 30%;
   background-color: #7f6779;
 `;
 
