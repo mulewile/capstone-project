@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import Button from "../Button";
-
+import { StyledHeader } from "../Header";
+import { StyledFooter } from "../Footer";
 export const StyledForm = styled.form`
   max-width: 768px;
   border: 3px solid #dcae1d;
   border-radius: 20px;
   padding: 1rem;
-  margin: 0.25rem;
+  margin: 0.5rem;
   background-color: #cae4db;
-
+  margin-top: 80px;
   input {
     display: grid;
     margin-bottom: 8px;
@@ -44,7 +45,7 @@ export default function Form({
     <>
       {isEditing ? (
         <>
-          <Button onClick={onClick}>Cancel</Button>
+          <StyledHeader>Edit Event</StyledHeader>
           <StyledForm onSubmit={onEdit}>
             <label htmlFor="name">Name:</label>
             <input
@@ -97,10 +98,10 @@ export default function Form({
             />
             <Button type="submit">Update</Button>
           </StyledForm>
+          <Button onClick={onClick}>Cancel</Button>
         </>
       ) : (
         <>
-          <Button onClick={onClick}>Cancel</Button>
           <StyledForm onSubmit={onSubmit}>
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" name="name" />
@@ -118,8 +119,10 @@ export default function Form({
             <textarea type="text" id="guests" name="guests" />
             <Button type="submit">Save</Button>
           </StyledForm>
+          <Button onClick={onClick}>Cancel</Button>
         </>
       )}
+      <StyledFooter></StyledFooter>
     </>
   );
 }

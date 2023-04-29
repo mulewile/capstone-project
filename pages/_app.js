@@ -9,6 +9,8 @@ export default function App({ Component, pageProps }) {
   const [isEditing, setIsEditing] = useState(false);
   const [eventToEdit, setEventToEdit] = useState();
 
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
   const router = useRouter();
 
   function addEvent(newEvent) {
@@ -31,6 +33,10 @@ export default function App({ Component, pageProps }) {
     router.push(`/`);
   }
 
+  function handleDeleteEvent(id) {
+    setEvents(events.filter((event) => event.id !== id));
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -42,6 +48,7 @@ export default function App({ Component, pageProps }) {
         eventToEdit={eventToEdit}
         handleClickEdit={handleClickEdit}
         handleUpdateEvents={handleUpdateEvents}
+        handleDeleteEvent={handleDeleteEvent}
       />
     </>
   );
