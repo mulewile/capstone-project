@@ -1,26 +1,33 @@
 import { useRouter } from "next/router";
+import useSWR from "swr";
 import { useState } from "react";
 import { StyledCard } from "../../components/Card";
-import { StyledHeader } from "@/components/Header";
-import { StyledFooter } from "@/components/Footer";
-import { StyledModalWrapper } from "@/components/Modal";
-import { StyledModalContent } from "@/components/Modal";
-import Button from "@/components/Button";
+import { StyledHeader } from "../../components/Header";
+import { StyledFooter } from "../../components/Footer";
+import { StyledModalWrapper, StyledModalContent } from "../../components/Modal";
+import Button from "../../components/Button";
 
-export default function EventDetails({
-  handleClickEdit,
-  handleDeleteEvent,
-  events,
-}) {
+export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
   const [deleteModal, setDeleteModal] = useState(false);
+
   function handleModal() {
     setDeleteModal(!deleteModal);
   }
 
   const router = useRouter();
+  const { isReady } = router;
   const { id } = router.query;
+  const {
+    data: event,
+    isLoading,
+    error,
+  } = useSWR(id ? `/api/events/${id}` : null);
 
-  const event = events.find((event) => event.id === id);
+  console.log("Event Details Data====", event);
+
+  if (!isReady || isLoading || error) {
+    return <h1>Loading...</h1>;
+  }
 
   if (!event) {
     return <h1>No event found.</h1>;

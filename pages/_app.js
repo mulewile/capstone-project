@@ -1,15 +1,21 @@
 import GlobalStyle from "../styles";
+import useSWR, { SWRConfig } from "swr";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { events as initialEvents } from "../resources/events";
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function App({ Component, pageProps }) {
-  const [events, setEvents] = useState(initialEvents);
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { data, error, isLoading } = useSWR("/api/events", {
+    fallbackData: [],
+  });
+  console.log("Fetched Data =====", data);
+  // const [events, setEvents] = useState(initialEvents);
 
   const [isEditing, setIsEditing] = useState(false);
   const [eventToEdit, setEventToEdit] = useState();
-
-  const router = useRouter();
 
   function addEvent(newEvent) {
     setEvents([...events, newEvent]);
@@ -35,19 +41,33 @@ export default function App({ Component, pageProps }) {
     setEvents(events.filter((event) => event.id !== id));
   }
 
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
   return (
     <>
       <GlobalStyle />
-      <Component
-        {...pageProps}
-        events={events}
-        addEvent={addEvent}
-        isEditing={isEditing}
-        eventToEdit={eventToEdit}
-        handleClickEdit={handleClickEdit}
-        handleUpdateEvents={handleUpdateEvents}
-        handleDeleteEvent={handleDeleteEvent}
-      />
+      <SWRConfig
+        value={{
+          fetcher: async (...args) => {
+            const response = await fetch(...args);
+            if (!response.ok) {
+              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+            }
+            return await response.json();
+          },
+        }}
+      >
+        <Component
+          {...pageProps}
+          // events={events}
+          addEvent={addEvent}
+          isEditing={isEditing}
+          eventToEdit={eventToEdit}
+          handleClickEdit={handleClickEdit}
+          handleUpdateEvents={handleUpdateEvents}
+          handleDeleteEvent={handleDeleteEvent}
+        />
+      </SWRConfig>
     </>
   );
 }
