@@ -23,10 +23,10 @@ export default function EditEvent() {
         body: JSON.stringify(editedEvent),
       });
 
+      router.push(`/events/${eventId}`);
+
       if (!response.ok) {
         console.error(`Error: ${response.status}`);
-      } else {
-        router.push(`/events/${eventId}`);
       }
     }
   }

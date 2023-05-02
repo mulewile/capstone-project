@@ -10,7 +10,7 @@ import {
 } from "../../../components/Modal";
 import Button from "../../../components/Button";
 
-export default function EventDetails({ handleClickEdit }) {
+export default function EventDetails() {
   const [deleteModal, setDeleteModal] = useState(false);
 
   function handleModal() {
@@ -34,11 +34,12 @@ export default function EventDetails({ handleClickEdit }) {
       method: "DELETE",
     });
 
+    router.push("/");
+
     if (!response.ok) {
       console.error(`Error: ${response.status}`);
       return;
     }
-    router.push("/");
   }
 
   if (!isReady || isLoading || error) {
@@ -61,9 +62,7 @@ export default function EventDetails({ handleClickEdit }) {
             </Button>
             <Button
               type="button"
-              onClick={() => {
-                router.push(`/events/${id}/edit`);
-              }}
+              onClick={() => router.push(`/events/${id}/edit`)}
             >
               Edit
             </Button>
