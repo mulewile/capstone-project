@@ -36,7 +36,6 @@ export default function Form({
 
     const formData = new FormData(event.target);
     const eventObject = Object.fromEntries(formData);
-
     const eventData = { ...eventToEdit, ...eventObject };
 
     handleUpdateEvents(eventData);

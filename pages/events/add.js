@@ -4,7 +4,7 @@ import Form from "../../components/Form";
 import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 
-export default function AddEvent({ events }) {
+export default function AddEvent() {
   const router = useRouter();
 
   async function handleSubmit(event) {
@@ -38,7 +38,7 @@ export default function AddEvent({ events }) {
   return (
     <>
       <StyledHeader>Add an Event</StyledHeader>
-      <Form onSubmit={handleSubmit} onClick={cancelAdd} events={events} />
+      <Form onSubmit={handleSubmit} onClick={cancelAdd} />
       <StyledFooter></StyledFooter>
     </>
   );

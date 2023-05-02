@@ -10,7 +10,7 @@ import {
 } from "../../../components/Modal";
 import Button from "../../../components/Button";
 
-export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
+export default function EventDetails({ handleClickEdit }) {
   const [deleteModal, setDeleteModal] = useState(false);
 
   function handleModal() {
@@ -26,14 +26,24 @@ export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
     error,
   } = useSWR(id ? `/api/events/${id}` : null);
 
-  if (!isReady || isLoading || error) {
-    return <h1>Loading...</h1>;
-  }
-
   if (!event) {
     return <h1>No event found.</h1>;
   }
+  async function handleDeleteEvent() {
+    const response = await fetch(`/api/events/${id}`, {
+      method: "DELETE",
+    });
 
+    if (!response.ok) {
+      console.error(`Error: ${response.status}`);
+      return;
+    }
+    router.push("/");
+  }
+
+  if (!isReady || isLoading || error) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <>
       <StyledHeader>Details</StyledHeader>
@@ -43,13 +53,7 @@ export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
             <StyledModalContent>
               <h2>What would you like to do?</h2>
             </StyledModalContent>
-            <Button
-              type="button"
-              onClick={() => {
-                handleDeleteEvent(id);
-                router.push("/");
-              }}
-            >
+            <Button type="button" onClick={handleDeleteEvent}>
               Delete
             </Button>
             <Button type="button" onClick={() => setDeleteModal(false)}>
@@ -58,8 +62,6 @@ export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
             <Button
               type="button"
               onClick={() => {
-                // handleClickEdit(event);
-                console.log("Id Echeck !!!", id);
                 router.push(`/events/${id}/edit`);
               }}
             >
@@ -84,7 +86,6 @@ export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
           <Button
             type="button"
             onClick={() => {
-              // handleClickEdit(event);
               router.push(`/events/${id}/edit`);
             }}
           >

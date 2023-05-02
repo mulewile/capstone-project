@@ -16,9 +16,14 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "PATCH") {
-    console.log("GEt ID==", id);
     await Event.findByIdAndUpdate(id, { $set: request.body });
 
     response.status(200).json({ status: `Event ${id} successfully updated.` });
+  }
+
+  if (request.method === "DELETE") {
+    await Event.findByIdAndDelete(id);
+
+    response.status(200).json({ status: `Event ${id} successfully deleted.` });
   }
 }

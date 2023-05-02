@@ -2,10 +2,6 @@ import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
 
 export default function App({ Component, pageProps }) {
-  // function handleDeleteEvent(id) {
-  //   setEvents(events.filter((event) => event.id !== id));
-  // }
-
   return (
     <>
       <GlobalStyle />

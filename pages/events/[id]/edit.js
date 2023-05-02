@@ -6,14 +6,14 @@ export default function EditEvent() {
   const router = useRouter();
   const { id } = router.query;
   const { data: event, isLoading, error } = useSWR(`/api/events/${id}`);
-  console.log("Check Event ---", event);
+
   const cancelAdd = () => {
     router.push(`/`);
   };
-  async function handleUpdateEvents(editedEvent) {
-    console.log("editedEvent Check ======>", editedEvent);
 
+  async function handleUpdateEvents(editedEvent) {
     const eventId = editedEvent._id;
+
     {
       const response = await fetch(eventId ? `/api/events/${eventId}` : null, {
         method: "PATCH",
@@ -29,7 +29,6 @@ export default function EditEvent() {
         console.error(`Error: ${response.status}`);
       } else {
         router.push(`/events/${eventId}`);
-        console.log("Event edited....");
       }
     }
   }

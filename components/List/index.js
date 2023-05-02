@@ -4,9 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import { StyledListItem, StyledList } from "./StyledListLayout";
 import Button from "../Button";
 
-export default function List({ events }) {
+export default function List() {
   const { data } = useSWR("/api/events", { fallbackData: [] });
-  console.log("Data ===", data, "!");
+
   return (
     <>
       <StyledList>
