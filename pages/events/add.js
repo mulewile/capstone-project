@@ -24,8 +24,9 @@ export default function AddEvent() {
       },
     });
 
+    router.push("/");
+
     if (response.ok) {
-      router.push(`/`);
     } else {
       console.error("Failed to add event");
     }
