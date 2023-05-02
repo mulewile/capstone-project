@@ -1,11 +1,14 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { useState } from "react";
-import { StyledCard } from "../../components/Card";
-import { StyledHeader } from "../../components/Header";
-import { StyledFooter } from "../../components/Footer";
-import { StyledModalWrapper, StyledModalContent } from "../../components/Modal";
-import Button from "../../components/Button";
+import { StyledCard } from "../../../components/Card";
+import { StyledHeader } from "../../../components/Header";
+import { StyledFooter } from "../../../components/Footer";
+import {
+  StyledModalWrapper,
+  StyledModalContent,
+} from "../../../components/Modal";
+import Button from "../../../components/Button";
 
 export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -22,8 +25,6 @@ export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
     isLoading,
     error,
   } = useSWR(id ? `/api/events/${id}` : null);
-
-  console.log("Event Details Data====", event);
 
   if (!isReady || isLoading || error) {
     return <h1>Loading...</h1>;
@@ -57,8 +58,9 @@ export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
             <Button
               type="button"
               onClick={() => {
-                handleClickEdit(event);
-                router.push(`/events/edit`);
+                // handleClickEdit(event);
+                console.log("Id Echeck !!!", id);
+                router.push(`/events/${id}/edit`);
               }}
             >
               Edit
@@ -82,8 +84,8 @@ export default function EventDetails({ handleClickEdit, handleDeleteEvent }) {
           <Button
             type="button"
             onClick={() => {
-              handleClickEdit(event);
-              router.push(`/events/edit`);
+              // handleClickEdit(event);
+              router.push(`/events/${id}/edit`);
             }}
           >
             Edit
