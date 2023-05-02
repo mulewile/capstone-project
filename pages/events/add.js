@@ -4,10 +4,10 @@ import Form from "../../components/Form";
 import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 
-export default function AddEvent({ addEvent, events }) {
+export default function AddEvent({ events }) {
   const router = useRouter();
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -16,9 +16,19 @@ export default function AddEvent({ addEvent, events }) {
     const id = uuid4();
     const eventData = { ...eventObject, id };
 
-    addEvent(eventData);
+    const response = await fetch("/api/events", {
+      method: "POST",
+      body: JSON.stringify(eventData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-    router.push(`/`);
+    if (response.ok) {
+      router.push(`/`);
+    } else {
+      console.log("Failed to add event");
+    }
   }
 
   const cancelAdd = () => {

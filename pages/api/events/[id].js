@@ -13,5 +13,13 @@ export default async function handler(request, response) {
     }
 
     response.status(200).json(event);
+
+    if (request.method === "PATCH") {
+      await Event.findByIdAndUpdate(id, { $set: request.body });
+
+      response
+        .status(200)
+        .json({ status: `Event ${id} successfully updated.` });
+    }
   }
 }

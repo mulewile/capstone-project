@@ -38,6 +38,7 @@ export default function Form({
     const eventObject = Object.fromEntries(formData);
 
     const eventData = { ...eventToEdit, ...eventObject };
+
     handleUpdateEvents(eventData);
   }
 
@@ -53,6 +54,7 @@ export default function Form({
               id="name"
               name="name"
               defaultValue={eventToEdit?.name}
+              required
             />
             <label htmlFor="event">Event:</label>
             <input
@@ -60,6 +62,7 @@ export default function Form({
               id="event"
               name="event"
               defaultValue={eventToEdit?.event}
+              required
             />
             <label htmlFor="date">Date:</label>
             <input
@@ -104,9 +107,9 @@ export default function Form({
         <>
           <StyledForm onSubmit={onSubmit}>
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" />
+            <input type="text" id="name" name="name" required />
             <label htmlFor="event">Event:</label>
-            <input type="text" id="event" name="event" />
+            <input type="text" id="event" name="event" required />
             <label htmlFor="date">Date:</label>
             <input type="date" id="date" name="date" />
             <label htmlFor="location">Location:</label>
