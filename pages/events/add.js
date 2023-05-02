@@ -27,7 +27,7 @@ export default function AddEvent() {
     if (response.ok) {
       router.push(`/`);
     } else {
-      console.log("Failed to add event");
+      console.error("Failed to add event");
     }
   }
 

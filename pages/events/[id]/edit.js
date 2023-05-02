@@ -23,8 +23,6 @@ export default function EditEvent() {
         body: JSON.stringify(editedEvent),
       });
 
-      console.log("id CHECK ====>", eventId);
-
       if (!response.ok) {
         console.error(`Error: ${response.status}`);
       } else {
