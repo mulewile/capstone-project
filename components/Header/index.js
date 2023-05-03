@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.h1`
-  display: flex;
-  justify-content: center;
   background-color: #7c677f;
+  margin: 0 auto;
+  max-width: 390px;
   color: white;
   padding: 1rem;
-  margin: 0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
 `;

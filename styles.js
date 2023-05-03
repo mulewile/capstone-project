@@ -8,7 +8,10 @@ export default createGlobalStyle`
   }
 
   body {
-    margin: 0;
+    display: grid;
+    min-height: 100vh;
+    max-width: 368px;
+    margin: 0 auto;
     font-family: system-ui;
     background-color: #d1e9ea;
   }

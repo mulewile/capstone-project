@@ -3,7 +3,7 @@ import Button from "../Button";
 import { StyledHeader } from "../Header";
 import { StyledFooter } from "../Footer";
 export const StyledForm = styled.form`
-  max-width: 768px;
+  max-width: 368px;
   border: 3px solid #dcae1d;
   border-radius: 20px;
   padding: 1rem;
@@ -13,7 +13,7 @@ export const StyledForm = styled.form`
   input {
     display: grid;
     margin-bottom: 8px;
-    font-size: 16px;
+    font-size: 12px;
   }
 
   textarea {
@@ -36,8 +36,8 @@ export default function Form({
 
     const formData = new FormData(event.target);
     const eventObject = Object.fromEntries(formData);
-
     const eventData = { ...eventToEdit, ...eventObject };
+
     handleUpdateEvents(eventData);
   }
 
@@ -53,6 +53,7 @@ export default function Form({
               id="name"
               name="name"
               defaultValue={eventToEdit?.name}
+              required
             />
             <label htmlFor="event">Event:</label>
             <input
@@ -60,6 +61,7 @@ export default function Form({
               id="event"
               name="event"
               defaultValue={eventToEdit?.event}
+              required
             />
             <label htmlFor="date">Date:</label>
             <input
@@ -104,9 +106,9 @@ export default function Form({
         <>
           <StyledForm onSubmit={onSubmit}>
             <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" />
+            <input type="text" id="name" name="name" required />
             <label htmlFor="event">Event:</label>
-            <input type="text" id="event" name="event" />
+            <input type="text" id="event" name="event" required />
             <label htmlFor="date">Date:</label>
             <input type="date" id="date" name="date" />
             <label htmlFor="location">Location:</label>
