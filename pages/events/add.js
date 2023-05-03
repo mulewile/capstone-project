@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import uuid4 from "uuid4";
 import Form from "../../components/Form";
-import { StyledHeader } from "@/components/Header";
-import { StyledFooter } from "@/components/Footer";
+import { StyledHeader, StyledFooter } from "@/components";
 
 export default function AddEvent() {
   const router = useRouter();
@@ -32,14 +31,10 @@ export default function AddEvent() {
     }
   }
 
-  const cancelAdd = () => {
-    router.push(`/`);
-  };
-
   return (
     <>
       <StyledHeader>Add an Event</StyledHeader>
-      <Form onSubmit={handleSubmit} onClick={cancelAdd} />
+      <Form onSubmit={handleSubmit} />
       <StyledFooter></StyledFooter>
     </>
   );

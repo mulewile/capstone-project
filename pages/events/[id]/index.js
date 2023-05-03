@@ -1,14 +1,15 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { useState } from "react";
-import { StyledCard } from "../../../components/Card";
-import { StyledHeader } from "../../../components/Header";
-import { StyledFooter } from "../../../components/Footer";
 import {
+  StyledCard,
+  StyledHeader,
+  StyledFooter,
   StyledModalWrapper,
   StyledModalContent,
-} from "../../../components/Modal";
-import Button from "../../../components/Button";
+  StyledLink,
+  Button,
+} from "@/components";
 
 export default function EventDetails() {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -60,12 +61,6 @@ export default function EventDetails() {
             <Button type="button" onClick={() => setDeleteModal(false)}>
               Keep
             </Button>
-            <Button
-              type="button"
-              onClick={() => router.push(`/events/${id}/edit`)}
-            >
-              Edit
-            </Button>
           </StyledModalWrapper>
         </>
       ) : (
@@ -79,15 +74,8 @@ export default function EventDetails() {
             <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
             <p>Guests: {event.guests}</p>
           </StyledCard>
-          <Button type="button" onClick={() => router.push("/")}>
-            Go Back
-          </Button>
-          <Button
-            type="button"
-            onClick={() => {
-              router.push(`/events/${id}/edit`);
-            }}
-          >
+          <StyledLink href="/">Go Back</StyledLink>
+          <Button onClick={() => router.push(`/events/${id}/edit`)}>
             Edit
           </Button>
           <Button
