@@ -1,14 +1,24 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import styled from "styled-components";
 import { useState } from "react";
-import { StyledCard } from "../../../components/Card";
-import { StyledHeader } from "../../../components/Header";
-import { StyledFooter } from "../../../components/Footer";
 import {
+  StyledCard,
+  StyledHeader,
+  StyledFooter,
   StyledModalWrapper,
   StyledModalContent,
-} from "../../../components/Modal";
-import Button from "../../../components/Button";
+  StyledLink,
+  Button,
+  DeleteRequestButton,
+  EditButton,
+} from "@/components";
+
+const StyledCardWrapper = styled.div`
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+`;
 
 export default function EventDetails() {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -60,44 +70,33 @@ export default function EventDetails() {
             <Button type="button" onClick={() => setDeleteModal(false)}>
               Keep
             </Button>
-            <Button
-              type="button"
-              onClick={() => router.push(`/events/${id}/edit`)}
-            >
-              Edit
-            </Button>
           </StyledModalWrapper>
         </>
       ) : (
         <>
-          <StyledCard>
-            <h2>Name: {event.name}</h2>
-            <h2>Event: {event.event}</h2>
-            <h2>Date: {event.date}</h2>
-            <p>Location: {event.location}</p>
-            <p>Tasks: {event.tasks}</p>
-            <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
-            <p>Guests: {event.guests}</p>
-          </StyledCard>
-          <Button type="button" onClick={() => router.push("/")}>
-            Go Back
-          </Button>
-          <Button
-            type="button"
-            onClick={() => {
-              router.push(`/events/${id}/edit`);
-            }}
-          >
+          <StyledCardWrapper>
+            <StyledCard>
+              <h2>Name: {event.name}</h2>
+              <h2>Event: {event.event}</h2>
+              <h2>Date: {event.date}</h2>
+              <p>Location: {event.location}</p>
+              <p>Tasks: {event.tasks}</p>
+              <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
+              <p>Guests: {event.guests}</p>
+            </StyledCard>
+          </StyledCardWrapper>
+          <StyledLink href="/">Go Back</StyledLink>
+          <EditButton onClick={() => router.push(`/events/${id}/edit`)}>
             Edit
-          </Button>
-          <Button
+          </EditButton>
+          <DeleteRequestButton
             type="button"
             onClick={() => {
               handleModal();
             }}
           >
             Delete
-          </Button>
+          </DeleteRequestButton>
         </>
       )}
       <StyledFooter></StyledFooter>

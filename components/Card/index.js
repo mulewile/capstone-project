@@ -6,7 +6,8 @@ export const StyledCard = styled.article`
   border-radius: 20px;
   padding: 1rem;
   margin: 0.25rem;
-  margin-top: 80px;
+  margin-top: 70px;
+  margin-bottom: 70px;
   background-color: #f9c5bd;
 
   h2 {
