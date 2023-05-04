@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import styled from "styled-components";
 import { useState } from "react";
 import {
   StyledCard,
@@ -9,7 +10,15 @@ import {
   StyledModalContent,
   StyledLink,
   Button,
+  DeleteRequestButton,
+  EditButton,
 } from "@/components";
+
+const StyledCardWrapper = styled.div`
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+`;
 
 export default function EventDetails() {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -65,27 +74,29 @@ export default function EventDetails() {
         </>
       ) : (
         <>
-          <StyledCard>
-            <h2>Name: {event.name}</h2>
-            <h2>Event: {event.event}</h2>
-            <h2>Date: {event.date}</h2>
-            <p>Location: {event.location}</p>
-            <p>Tasks: {event.tasks}</p>
-            <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
-            <p>Guests: {event.guests}</p>
-          </StyledCard>
+          <StyledCardWrapper>
+            <StyledCard>
+              <h2>Name: {event.name}</h2>
+              <h2>Event: {event.event}</h2>
+              <h2>Date: {event.date}</h2>
+              <p>Location: {event.location}</p>
+              <p>Tasks: {event.tasks}</p>
+              <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
+              <p>Guests: {event.guests}</p>
+            </StyledCard>
+          </StyledCardWrapper>
           <StyledLink href="/">Go Back</StyledLink>
-          <Button onClick={() => router.push(`/events/${id}/edit`)}>
+          <EditButton onClick={() => router.push(`/events/${id}/edit`)}>
             Edit
-          </Button>
-          <Button
+          </EditButton>
+          <DeleteRequestButton
             type="button"
             onClick={() => {
               handleModal();
             }}
           >
             Delete
-          </Button>
+          </DeleteRequestButton>
         </>
       )}
       <StyledFooter></StyledFooter>
