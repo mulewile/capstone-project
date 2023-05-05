@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import { toHaveAttribute } from "@testing-library/jest-dom";
 import HomePage from ".";
 
 test("renders a heading", () => {
