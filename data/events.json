@@ -8,35 +8,5 @@
     "tasks": "Buy food and drinks, clean the grill, set up tables and chairs",
     "ideas": "Lawn games, make your own burger station",
     "guests": "25"
-  },
-  {
-    "id": "1",
-    "name": "Family Reunion",
-    "date": "8 August 2023",
-    "location": "Grandma's House",
-    "event": "Reunion",
-    "tasks": "Coordinate with family members, plan activities, book accommodations",
-    "ideas": "Family photo session,..talent show",
-    "guests": "80"
-  },
-  {
-    "id": "2",
-    "name": "Academiae Magistrorum Conventionis",
-    "date": "25 Iulii 2030",
-    "location": "Universitas Magistrorum",
-    "event": "Conventio",
-    "tasks": "Praesidem eligere, chartam conventus componere, ordines ab oratore accipere",
-    "ideas": "Disputatio inter magistros, lectio magna, colloquia per diem",
-    "guests": "50"
-  },
-  {
-    "id": "7",
-    "name": "Hochzeit von Lorem und Ipsum",
-    "date": "15. August 2023",
-    "location": "Schloss",
-    "event": "Hochzeit",
-    "tasks": "Brautkleid und Anzug besorgen, Catering buchen, DJ engagieren",
-    "ideas": "Photobooth, Feuerwerk",
-    "guests": "100"
   }
 ]
