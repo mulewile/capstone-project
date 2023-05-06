@@ -83,6 +83,29 @@ export default function EventDetails() {
               <p>Tasks: {event.tasks}</p>
               <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
               <p>Guests: {event.guests}</p>
+              <h3>EXPENSES</h3>
+              <h4>Budget ${event.budget}</h4>
+              <p>Food & Drinks ${event.food}</p>
+              <p>Accomodation ${event.accomodation}</p>
+              <p>Transport ${event.transport}</p>
+              <p>Gifts ${event.gifts}</p>
+              <p>Other Expenses ${event.otherExpenses}</p>
+              {event.food > 0 ||
+              event.accomodation > 0 ||
+              event.transport > 0 ||
+              event.gifts > 0 ||
+              event.otherExpenses > 0 ? (
+                <h4>
+                  TOTAL $
+                  {event.food +
+                    event.accomodation +
+                    event.transport +
+                    event.gifts +
+                    event.otherExpenses}
+                </h4>
+              ) : (
+                <h4>TOTAL $ 0</h4>
+              )}
             </StyledCard>
           </StyledCardWrapper>
           <StyledLink href="/">Go Back</StyledLink>

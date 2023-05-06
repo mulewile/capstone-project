@@ -4,12 +4,41 @@ export const StyledButton = styled.button`
   border: 2px solid #dcae1d;
   border-radius: 10px;
   padding: 10px;
-  margin: 10px;
+  margin-left: px;
   color: #12343b;
   font-size: 12px;
   margin-bottom: 8px;
 `;
-
+export const UpdateButton = styled(StyledButton)`
+  ${css`
+    display: flex;
+    position: fixed;
+    margin: 0;
+    border: 2px solid black;
+    background-color: lightgreen;
+    bottom: 70px;
+    right: calc(50% - 190px);
+    padding: 0.7rem 1rem;
+    border-radius: 0.6rem;
+    color: black;
+    font-weight: bold;
+  `}
+`;
+export const SaveButton = styled(StyledButton)`
+  ${css`
+    display: flex;
+    position: fixed;
+    margin: 0;
+    border: 2px solid black;
+    background-color: lightgreen;
+    bottom: 70px;
+    right: calc(50% - 190px);
+    padding: 0.7rem 1rem;
+    border-radius: 0.6rem;
+    color: black;
+    font-weight: bold;
+  `}
+`;
 export const EditButton = styled(StyledButton)`
   ${css`
     display: flex;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { StyledLink } from "../Link/StyledLinks";
+import { SaveButton, UpdateButton } from "../Button";
 import Button from "../Button";
 import { StyledHeader } from "../Header";
 import { StyledFooter } from "../Footer";
@@ -12,6 +13,7 @@ export const StyledForm = styled.form`
   margin: 0.5rem;
   background-color: #cae4db;
   margin-top: 80px;
+  margin-bottom: 90px;
 
   input {
     display: grid;
@@ -100,7 +102,52 @@ export default function Form({
               name="guests"
               defaultValue={eventToEdit?.guests}
             />
-            <Button type="submit">Update</Button>
+            <fieldset>
+              <legend>EXPENSES</legend>
+              <label htmlFor="budget">Budget</label>
+              <input
+                type="number"
+                id="budget"
+                name="budget"
+                defaultValue={eventToEdit?.budget}
+              />
+              <label htmlFor="food">Food & Drinks</label>
+              <input
+                type="number"
+                id="food"
+                name="food"
+                defaultValue={eventToEdit?.food}
+              />
+              <label htmlFor="Accomodation">Accomodation</label>
+              <input
+                type="number"
+                id="accomodation"
+                name="accomodation"
+                defaultValue={eventToEdit?.accomodation}
+              />
+              <label htmlFor="transport">Transport</label>
+              <input
+                type="number"
+                id="transport"
+                name="transport"
+                defaultValue={eventToEdit?.transport}
+              />
+              <label htmlFor="gifts">Gifts</label>
+              <input
+                type="number"
+                id="gifts"
+                name="gifts"
+                defaultValue={eventToEdit?.gifts}
+              />
+              <label htmlFor="otherExpenses">Other Expenses</label>
+              <input
+                type="number"
+                id="otherExpenses"
+                name="otherExpenses"
+                defaultValue={eventToEdit?.otherExpenses}
+              />
+            </fieldset>
+            <UpdateButton type="submit">Update</UpdateButton>
           </StyledForm>
           <StyledLink href="/">Cancel</StyledLink>
         </>
@@ -121,7 +168,22 @@ export default function Form({
             <textarea type="text" id="ideas" name="ideas" />
             <label htmlFor="guests">Guests:</label>
             <textarea type="text" id="guests" name="guests" />
-            <Button type="submit">Save</Button>
+            <fieldset>
+              <legend>EXPENSES</legend>
+              <label htmlFor="budget">Budget</label>
+              <input type="number" id="budget" name="budget" />
+              <label htmlFor="food">Food & Drinks</label>
+              <input type="number" id="food" name="food" />
+              <label htmlFor="Accomodation">Accomodation</label>
+              <input type="number" id="accomodation" name="accomodation" />
+              <label htmlFor="transport">Transport</label>
+              <input type="number" id="transport" name="transport" />
+              <label htmlFor="gifts">Gifts</label>
+              <input type="number" id="gifts" name="gifts" />
+              <label htmlFor="otherExpenses">Other Expenses</label>
+              <input type="number" id="otherExpenses" name="otherExpenses" />
+            </fieldset>
+            <SaveButton type="submit">Save</SaveButton>
           </StyledForm>
           <StyledLink href="/">Cancel</StyledLink>
         </>

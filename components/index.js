@@ -3,7 +3,12 @@ import { StyledFooter } from "./Footer";
 import { StyledHeader } from "./Header";
 import { StyledModalWrapper, StyledModalContent } from "./Modal";
 import { StyledLink, CenteredLink, RightLink } from "./Link/StyledLinks";
-import Button, { EditButton, DeleteRequestButton } from "./Button";
+import Button, {
+  SaveButton,
+  EditButton,
+  UpdateButton,
+  DeleteRequestButton,
+} from "./Button";
 
 export {
   StyledCard,
@@ -17,4 +22,6 @@ export {
   Button,
   DeleteRequestButton,
   EditButton,
+  SaveButton,
+  UpdateButton,
 };
