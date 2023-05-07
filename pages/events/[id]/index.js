@@ -35,10 +35,21 @@ export default function EventDetails() {
     isLoading,
     error,
   } = useSWR(id ? `/api/events/${id}` : null);
+  console.log("Check Event====", event);
+
+  const eventBudget = event?.budget ?? "No Budget";
+
+  const totalExpenses =
+    event?.food +
+      event?.accomodation +
+      event?.transport +
+      event?.gifts +
+      event?.otherExpenses ?? "Amount Null";
 
   if (!event) {
     return <h1>No event found.</h1>;
   }
+
   async function handleDeleteEvent() {
     const response = await fetch(`/api/events/${id}`, {
       method: "DELETE",
@@ -84,27 +95,19 @@ export default function EventDetails() {
               <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
               <p>Guests: {event.guests}</p>
               <h3>EXPENSES</h3>
-              <h4>Budget ${event.budget}</h4>
+              <h4>BUDGET ${event.budget}</h4>
               <p>Food & Drinks ${event.food}</p>
               <p>Accomodation ${event.accomodation}</p>
               <p>Transport ${event.transport}</p>
               <p>Gifts ${event.gifts}</p>
               <p>Other Expenses ${event.otherExpenses}</p>
-              {event.food > 0 ||
-              event.accomodation > 0 ||
-              event.transport > 0 ||
-              event.gifts > 0 ||
-              event.otherExpenses > 0 ? (
-                <h4>
-                  TOTAL $
-                  {event.food +
-                    event.accomodation +
-                    event.transport +
-                    event.gifts +
-                    event.otherExpenses}
-                </h4>
+              {totalExpenses > 0 ? (
+                <h4>TOTAL EXPENSES ${totalExpenses}</h4>
+              ) : null}
+              {totalExpenses > event.budget ? (
+                <h4>BUDGET DEFICIT ${totalExpenses - eventBudget}</h4>
               ) : (
-                <h4>TOTAL $ 0</h4>
+                <h4>AVAILABLE FUNDS ${eventBudget - totalExpenses}</h4>
               )}
             </StyledCard>
           </StyledCardWrapper>

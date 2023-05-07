@@ -10,7 +10,7 @@ const eventSchema = new Schema({
   tasks: { type: String, required: false },
   ideas: { type: String, required: false },
   guests: { type: String, required: false },
-  budget: { type: Number, required: true },
+  budget: { type: Number, required: false },
   food: { type: Number, required: false },
   accomodation: { type: Number, required: false },
   transport: { type: Number, required: false },

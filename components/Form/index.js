@@ -84,6 +84,7 @@ export default function Form({
             <label htmlFor="tasks">Tasks:</label>
             <textarea
               type="text"
+              maxLength={200}
               id="tasks"
               name="tasks"
               defaultValue={eventToEdit?.tasks}
@@ -91,6 +92,7 @@ export default function Form({
             <label htmlFor="ideas">Ideas, Message, Thoughts:</label>
             <textarea
               type="text"
+              maxLength={300}
               id="ideas"
               name="ideas"
               defaultValue={eventToEdit?.ideas}
@@ -98,6 +100,7 @@ export default function Form({
             <label htmlFor="guests">Guests:</label>
             <textarea
               type="text"
+              maxLength={100}
               id="guests"
               name="guests"
               defaultValue={eventToEdit?.guests}
@@ -107,6 +110,9 @@ export default function Form({
               <label htmlFor="budget">Budget</label>
               <input
                 type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="budget"
                 name="budget"
                 defaultValue={eventToEdit?.budget}
@@ -114,6 +120,9 @@ export default function Form({
               <label htmlFor="food">Food & Drinks</label>
               <input
                 type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="food"
                 name="food"
                 defaultValue={eventToEdit?.food}
@@ -121,6 +130,9 @@ export default function Form({
               <label htmlFor="Accomodation">Accomodation</label>
               <input
                 type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="accomodation"
                 name="accomodation"
                 defaultValue={eventToEdit?.accomodation}
@@ -128,6 +140,9 @@ export default function Form({
               <label htmlFor="transport">Transport</label>
               <input
                 type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="transport"
                 name="transport"
                 defaultValue={eventToEdit?.transport}
@@ -135,6 +150,9 @@ export default function Form({
               <label htmlFor="gifts">Gifts</label>
               <input
                 type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="gifts"
                 name="gifts"
                 defaultValue={eventToEdit?.gifts}
@@ -142,6 +160,9 @@ export default function Form({
               <label htmlFor="otherExpenses">Other Expenses</label>
               <input
                 type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="otherExpenses"
                 name="otherExpenses"
                 defaultValue={eventToEdit?.otherExpenses}
@@ -163,25 +184,42 @@ export default function Form({
             <label htmlFor="location">Location:</label>
             <input type="text" id="location" name="location" />
             <label htmlFor="tasks">Tasks:</label>
-            <textarea type="text" id="tasks" name="tasks" />
+            <textarea type="text" maxLength={300} id="tasks" name="tasks" />
             <label htmlFor="ideas">Ideas, Message, Thoughts:</label>
-            <textarea type="text" id="ideas" name="ideas" />
+            <textarea type="text" maxLength={400} id="ideas" name="ideas" />
             <label htmlFor="guests">Guests:</label>
-            <textarea type="text" id="guests" name="guests" />
+            <textarea type="text" maxLength={100} id="guests" name="guests" />
             <fieldset>
               <legend>EXPENSES</legend>
               <label htmlFor="budget">Budget</label>
-              <input type="number" id="budget" name="budget" />
+              <input type="number" min={0} id="budget" name="budget" />
               <label htmlFor="food">Food & Drinks</label>
-              <input type="number" id="food" name="food" />
+              <input
+                type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
+                id="food"
+                name="food"
+              />
               <label htmlFor="Accomodation">Accomodation</label>
-              <input type="number" id="accomodation" name="accomodation" />
+              <input
+                type="number"
+                min={0}
+                id="accomodation"
+                name="accomodation"
+              />
               <label htmlFor="transport">Transport</label>
-              <input type="number" id="transport" name="transport" />
+              <input type="number" min={0} id="transport" name="transport" />
               <label htmlFor="gifts">Gifts</label>
-              <input type="number" id="gifts" name="gifts" />
+              <input type="number" min={0} id="gifts" name="gifts" />
               <label htmlFor="otherExpenses">Other Expenses</label>
-              <input type="number" id="otherExpenses" name="otherExpenses" />
+              <input
+                type="number"
+                min={0}
+                id="otherExpenses"
+                name="otherExpenses"
+              />
             </fieldset>
             <SaveButton type="submit">Save</SaveButton>
           </StyledForm>
