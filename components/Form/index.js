@@ -192,7 +192,14 @@ export default function Form({
             <fieldset>
               <legend>EXPENSES</legend>
               <label htmlFor="budget">Budget</label>
-              <input type="number" min={0} id="budget" name="budget" />
+              <input
+                type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
+                id="budget"
+                name="budget"
+              />
               <label htmlFor="food">Food & Drinks</label>
               <input
                 type="number"
@@ -205,18 +212,36 @@ export default function Form({
               <label htmlFor="Accomodation">Accomodation</label>
               <input
                 type="number"
-                min={0}
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="accomodation"
                 name="accomodation"
               />
               <label htmlFor="transport">Transport</label>
-              <input type="number" min={0} id="transport" name="transport" />
+              <input
+                type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
+                id="transport"
+                name="transport"
+              />
               <label htmlFor="gifts">Gifts</label>
-              <input type="number" min={0} id="gifts" name="gifts" />
+              <input
+                type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
+                id="gifts"
+                name="gifts"
+              />
               <label htmlFor="otherExpenses">Other Expenses</label>
               <input
                 type="number"
-                min={0}
+                min="0.00"
+                max="10000.00"
+                step="0.01"
                 id="otherExpenses"
                 name="otherExpenses"
               />
