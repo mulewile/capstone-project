@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const eventSchema = new Schema({
   name: { type: String, required: true },
-  date: { type: Date, required: false },
+  date: { type: String, required: false },
   location: { type: String, required: false },
   event: { type: String, required: true },
   tasks: { type: String, required: false },

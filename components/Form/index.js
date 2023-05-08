@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { StyledLink } from "../Link/StyledLinks";
 import { SaveButton, UpdateButton } from "../Button";
-import Button from "../Button";
 import { StyledHeader } from "../Header";
 import { StyledFooter } from "../Footer";
 

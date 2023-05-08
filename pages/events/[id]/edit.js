@@ -4,12 +4,9 @@ import Form from "../../../components/Form";
 
 export default function EditEvent() {
   const router = useRouter();
+  const { isReady } = router;
   const { id } = router.query;
   const { data: event, isLoading, error } = useSWR(`/api/events/${id}`);
-
-  const cancelAdd = () => {
-    router.push(`/`);
-  };
 
   async function handleUpdateEvents(editedEvent) {
     const eventId = editedEvent._id;
@@ -30,12 +27,16 @@ export default function EditEvent() {
       }
     }
   }
+
+  if (!isReady || isLoading || error) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div>
       <Form
         isEditing
         eventToEdit={event}
-        onClick={cancelAdd}
         handleUpdateEvents={handleUpdateEvents}
       />
     </div>

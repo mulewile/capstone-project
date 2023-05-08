@@ -35,7 +35,6 @@ export default function EventDetails() {
     isLoading,
     error,
   } = useSWR(id ? `/api/events/${id}` : null);
-  console.log("Check Event====", event);
 
   const eventBudget = event?.budget ?? "No Budget";
 
@@ -107,7 +106,9 @@ export default function EventDetails() {
               {totalExpenses > event.budget ? (
                 <h4>BUDGET DEFICIT ${totalExpenses - eventBudget}</h4>
               ) : (
-                <h4>AVAILABLE FUNDS ${eventBudget - totalExpenses}</h4>
+                totalExpenses > 0.01 && (
+                  <h4>AVAILABLE FUNDS ${eventBudget - totalExpenses}</h4>
+                )
               )}
             </StyledCard>
           </StyledCardWrapper>
