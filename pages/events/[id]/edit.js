@@ -8,23 +8,21 @@ export default function EditEvent() {
   const { id } = router.query;
   const { data: event, isLoading, error } = useSWR(`/api/events/${id}`);
 
-  async function handleUpdateEvents(editedEvent) {
+  async function onSubmit(editedEvent) {
     const eventId = editedEvent._id;
 
-    {
-      const response = await fetch(eventId ? `/api/events/${eventId}` : null, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editedEvent),
-      });
+    const response = await fetch(eventId ? `/api/events/${eventId}` : null, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editedEvent),
+    });
 
-      router.push(`/events/${eventId}`);
+    router.push(`/events/${eventId}`);
 
-      if (!response.ok) {
-        console.error(`Error: ${response.status}`);
-      }
+    if (!response.ok) {
+      console.error(`Error: ${response.status}`);
     }
   }
 
@@ -34,11 +32,7 @@ export default function EditEvent() {
 
   return (
     <div>
-      <Form
-        isEditing
-        eventToEdit={event}
-        handleUpdateEvents={handleUpdateEvents}
-      />
+      <Form isEditing eventToEdit={event} onSubmit={onSubmit} />
     </div>
   );
 }
