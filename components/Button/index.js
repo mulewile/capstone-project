@@ -10,14 +10,12 @@ export const StyledButton = styled.button`
 `;
 export const SaveButton = styled(StyledButton)`
   display: flex;
-  position: fixed;
-  margin: 0;
+  position: relative;
   border: 2px solid black;
   background-color: lightgreen;
-  bottom: 70px;
-  right: calc(50% - 190px);
   padding: 0.7rem 1rem;
   border-radius: 0.6rem;
+  left: 60%;
   color: black;
   font-weight: bold;
 `;
