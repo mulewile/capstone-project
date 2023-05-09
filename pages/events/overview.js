@@ -1,15 +1,16 @@
-import List from "../components/List";
+import List from "@/components/List";
 import styled from "styled-components";
 import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 import { StyledLink } from "@/components/Link";
 import { LinkWrapper } from "@/components/Link";
+
 export const StyledSection = styled.div`
   margin: 0, auto;
   padding-bottom: 70px;
 `;
 
-export default function HomePage() {
+export default function Overview() {
   return (
     <>
       <StyledHeader>Upcoming Events</StyledHeader>
@@ -18,7 +19,7 @@ export default function HomePage() {
       </StyledSection>
       <LinkWrapper>
         <StyledLink href="events/add">
-          <span>✚</span>
+          <span>+</span>
         </StyledLink>
       </LinkWrapper>
       <StyledFooter></StyledFooter>

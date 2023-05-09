@@ -93,13 +93,27 @@ export default function EventDetails() {
         <>
           <StyledCardWrapper>
             <StyledCard>
-              <h2>Name: {event.name}</h2>
-              <h2>Event: {event.event}</h2>
-              <h2>Date: {formatDate(event.date)}</h2>
-              <p>Location: {event.location}</p>
-              <p>Tasks: {event.tasks}</p>
-              <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
-              <p>Guests: {event.guests}</p>
+              <h2>
+                Name: <span>{event.name}</span>
+              </h2>
+              <h2>
+                Event: <span>{event.event}</span>
+              </h2>
+              <h2>
+                Date: <span>{formatDate(event.date)}</span>
+              </h2>
+              <p>
+                Location: <span>{event.location}</span>
+              </p>
+              <p>
+                Tasks: <span>{event.tasks}</span>
+              </p>
+              <p>
+                Ideas, Message, Thoughts etc: <span>{event.ideas}</span>
+              </p>
+              <p>
+                Guests: <span>{event.guests}</span>
+              </p>
               <h3>EXPENSES</h3>
               <h4>AVAILABLE FUNDS ${event.eventBudget}</h4>
               <dl>
@@ -128,7 +142,7 @@ export default function EventDetails() {
           </StyledCardWrapper>
           <LinkWrapper>
             <StyledLink href="/">
-              <span>⬅︎</span>
+              <span>Back</span>
             </StyledLink>
           </LinkWrapper>
           <EditButton onClick={() => router.push(`/events/${id}/edit`)}>
