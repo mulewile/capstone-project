@@ -9,6 +9,7 @@ import { StyledFooter } from "@/components/Footer";
 import { StyledModalWrapper, StyledModalContent } from "@/components/Modal";
 import { StyledLink } from "@/components/Link";
 import { DeleteRequestButton, EditButton } from "@/components/Button";
+import { LinkWrapper } from "@/components/Link";
 
 const StyledCardWrapper = styled.div`
   flex: 1;
@@ -116,7 +117,7 @@ export default function EventDetails() {
               {totalExpenses > 0.01 ? (
                 <h4>TOTAL EXPENSES ${totalExpenses}</h4>
               ) : null}
-              {totalExpenses > event.eventFunds ? (
+              {totalExpenses > eventFunds ? (
                 <h4>BUDGET DEFICIT ${totalExpenses - eventFunds}</h4>
               ) : (
                 totalExpenses > 0.01 && (
@@ -125,7 +126,11 @@ export default function EventDetails() {
               )}
             </StyledCard>
           </StyledCardWrapper>
-          <StyledLink href="/">Go Back</StyledLink>
+          <LinkWrapper>
+            <StyledLink href="/">
+              <span>⬅︎</span>
+            </StyledLink>
+          </LinkWrapper>
           <EditButton onClick={() => router.push(`/events/${id}/edit`)}>
             Edit
           </EditButton>

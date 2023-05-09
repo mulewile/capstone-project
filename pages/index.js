@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 import { StyledLink } from "@/components/Link";
-
+import { LinkWrapper } from "@/components/Link";
 export const StyledSection = styled.div`
   margin: 0, auto;
-  margin-bottom: 70px;
+  padding-bottom: 70px;
 `;
 
 export default function HomePage() {
@@ -16,9 +16,9 @@ export default function HomePage() {
       <StyledSection>
         <List />
       </StyledSection>
-      <div>
-        <StyledLink href="events/add">Add +</StyledLink>
-      </div>
+      <LinkWrapper>
+        <StyledLink href="events/add">+</StyledLink>
+      </LinkWrapper>
       <StyledFooter></StyledFooter>
     </>
   );

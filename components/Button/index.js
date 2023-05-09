@@ -8,6 +8,7 @@ export const StyledButton = styled.button`
   font-size: 12px;
   margin-bottom: 8px;
 `;
+
 export const SaveButton = styled(StyledButton)`
   display: flex;
   position: relative;
@@ -19,6 +20,7 @@ export const SaveButton = styled(StyledButton)`
   color: black;
   font-weight: bold;
 `;
+
 export const EditButton = styled(StyledButton)`
   display: flex;
   position: fixed;
@@ -41,7 +43,7 @@ export const DeleteRequestButton = styled(StyledButton)`
   border: 2px solid black;
   background-color: orange;
   bottom: 70px;
-  right: calc(50% - 190px);
+  left: calc(50% - 190px);
   padding: 0.7rem 1rem;
   border-radius: 0.6rem;
   color: black;

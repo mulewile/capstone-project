@@ -3,6 +3,7 @@ import { StyledLink } from "../Link";
 import { SaveButton } from "../Button";
 import { StyledHeader } from "../Header";
 import { StyledFooter } from "../Footer";
+import { LinkWrapper } from "../Link";
 
 export const StyledForm = styled.form`
   max-width: 368px;
@@ -126,7 +127,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             max="10000.00"
             step="0.01"
             id="accomodationCosts"
-            name="accomodation"
+            name="accomodationCosts"
             defaultValue={eventToEdit?.accomodationCosts}
           />
           <label htmlFor="transportCosts">Transport</label>
@@ -162,7 +163,9 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
         </fieldset>
         <SaveButton type="submit">{isEditing ? "Update" : "Save"}</SaveButton>
       </StyledForm>
-      <StyledLink href="/">Cancel</StyledLink>
+      <LinkWrapper>
+        <StyledLink href="/">Cancel</StyledLink>
+      </LinkWrapper>
       <StyledFooter></StyledFooter>
     </>
   );
