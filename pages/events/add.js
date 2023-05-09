@@ -1,17 +1,13 @@
 import { useRouter } from "next/router";
 import uuid4 from "uuid4";
 import Form from "../../components/Form";
-import { StyledHeader, StyledFooter } from "@/components";
+import { StyledHeader } from "@/components/Header";
+import { StyledFooter } from "@/components/Footer";
 
 export default function AddEvent() {
   const router = useRouter();
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const eventObject = Object.fromEntries(formData);
-
+  async function handleSubmit(eventObject) {
     const id = uuid4();
     const eventData = { ...eventObject, id };
 

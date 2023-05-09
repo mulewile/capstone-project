@@ -1,6 +1,8 @@
 import List from "../components/List";
 import styled from "styled-components";
-import { StyledHeader, StyledFooter, StyledLink } from "@/components";
+import { StyledHeader } from "@/components/Header";
+import { StyledFooter } from "@/components/Footer";
+import { StyledLink } from "@/components/Link";
 
 export const StyledSection = styled.div`
   margin: 0, auto;

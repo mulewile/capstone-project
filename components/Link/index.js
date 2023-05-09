@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const StyledLink = styled.a`
   display: flex;
@@ -14,15 +14,4 @@ export const StyledLink = styled.a`
   left: calc(50% - 190px);
   text-decoration: none;
   font-weight: bold;
-`;
-export const CenteredLink = styled(StyledLink)`
-  ${css`
-    left: calc(80% - 190px);
-  `}
-`;
-
-export const RightLink = styled(StyledLink)`
-  ${css`
-    right: 20px;
-  `}
 `;
