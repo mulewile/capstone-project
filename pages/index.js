@@ -21,7 +21,7 @@ export default function HomePage() {
           <span>✚</span>
         </StyledLink>
       </LinkWrapper>
-      <StyledFooter></StyledFooter>
+      <StyledFooter>WePlan</StyledFooter>
     </>
   );
 }

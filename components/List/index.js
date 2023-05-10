@@ -9,8 +9,15 @@ const StyledListLink = styled.a`
 `;
 
 export default function List() {
-  const { data } = useSWR("/api/events", { fallbackData: [] });
+  const { data, error } = useSWR("/api/events");
 
+  if (error) {
+    return <h1>Error fetching events</h1>;
+  }
+
+  if (!data) {
+    return <h1>Loading events...</h1>;
+  }
   return (
     <>
       <StyledList>
@@ -18,7 +25,7 @@ export default function List() {
           <StyledListLink href={`/events/${event._id}`} key={uuidv4()}>
             <StyledListItem>
               {event.name}: {event.event}
-              {event.eventLikeStatus ? "👍" : ""}
+              {event.eventLikeStatus ? "❤️" : ""}
               <p> {event.location}</p>
             </StyledListItem>
           </StyledListLink>

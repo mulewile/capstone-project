@@ -31,7 +31,7 @@ export default function AddEvent() {
     <>
       <StyledHeader>Add an Event</StyledHeader>
       <Form onSubmit={handleSubmit} />
-      <StyledFooter></StyledFooter>
+      <StyledFooter>WePlan</StyledFooter>
     </>
   );
 }

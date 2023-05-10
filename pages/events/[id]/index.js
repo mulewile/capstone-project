@@ -8,7 +8,12 @@ import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 import { StyledModalWrapper, StyledModalContent } from "@/components/Modal";
 import { StyledLink } from "@/components/Link";
-import { DeleteRequestButton, EditButton } from "@/components/Button";
+import {
+  EventLikeButton,
+  DeleteConfirmButton,
+  DeleteRequestButton,
+  EditButton,
+} from "@/components/Button";
 import { LinkWrapper } from "@/components/Link";
 
 const StyledCardWrapper = styled.div`
@@ -18,7 +23,7 @@ const StyledCardWrapper = styled.div`
 `;
 function formatDate(timeStamp) {
   const date = new Date(timeStamp);
-  return `${date.toLocaleDateString()} - ${date.toLocaleTimeString()}`;
+  return `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`;
 }
 
 export default function EventDetails() {
@@ -36,6 +41,10 @@ export default function EventDetails() {
     isLoading,
     error,
   } = useSWR(id ? `/api/events/${id}` : null);
+
+  if (!isReady || isLoading || error) {
+    return <h1>Loading...</h1>;
+  }
 
   if (!event) {
     return <h1>No event found.</h1>;
@@ -84,9 +93,7 @@ export default function EventDetails() {
       return;
     }
   }
-  if (!isReady || isLoading || error) {
-    return <h1>Loading...</h1>;
-  }
+
   return (
     <>
       <StyledHeader>Details</StyledHeader>
@@ -96,9 +103,9 @@ export default function EventDetails() {
             <StyledModalContent>
               <h2>What would you like to do?</h2>
             </StyledModalContent>
-            <Button type="button" onClick={handleDeleteEvent}>
+            <DeleteConfirmButton type="button" onClick={handleDeleteEvent}>
               Delete
-            </Button>
+            </DeleteConfirmButton>
             <Button type="button" onClick={() => setDeleteModal(false)}>
               Keep
             </Button>
@@ -108,15 +115,13 @@ export default function EventDetails() {
         <>
           <StyledCardWrapper>
             <StyledCard>
-              <h2>
-                Name: <span>{event.name}</span>
-              </h2>
-              <h2>
+              <h2>Name: {event.name}</h2>
+              <p>
                 Event: <span>{event.event}</span>
-              </h2>
-              <h2>
+              </p>
+              <p>
                 Date: <span>{formatDate(event.date)}</span>
-              </h2>
+              </p>
               <p>
                 Location: <span>{event.location}</span>
               </p>
@@ -153,9 +158,9 @@ export default function EventDetails() {
                   <h4>REMAINING FUNDS ${eventFunds - totalExpenses}</h4>
                 )
               )}
-              <button type="button" onClick={handleLikeEvent}>
+              <EventLikeButton type="button" onClick={handleLikeEvent}>
                 {event.eventLikeStatus ? "Unlike" : "Like"}
-              </button>
+              </EventLikeButton>
             </StyledCard>
           </StyledCardWrapper>
           <LinkWrapper>
@@ -176,7 +181,7 @@ export default function EventDetails() {
           </DeleteRequestButton>
         </>
       )}
-      <StyledFooter></StyledFooter>
+      <StyledFooter>WePlan</StyledFooter>
     </>
   );
 }
