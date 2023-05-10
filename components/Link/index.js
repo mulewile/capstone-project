@@ -32,9 +32,9 @@ export const EnterLink = styled(StyledLink)`
 export const ExitLink = styled(StyledLink)`
   display: flex;
   position: fixed;
-  left: 36%;
-  top: 87.5%;
-  transform: translate(-50%, -50%);
+  margin: 0;
+  bottom: 70px;
+  left: calc(50% - 170px);
 `;
 
 export const LinkWrapper = styled.div`
