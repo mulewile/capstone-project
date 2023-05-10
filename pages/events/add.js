@@ -19,7 +19,7 @@ export default function AddEvent() {
       },
     });
 
-    router.push("/");
+    router.push("/events/overview");
 
     if (response.ok) {
     } else {

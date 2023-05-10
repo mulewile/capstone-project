@@ -70,7 +70,7 @@ export default function EventDetails() {
       method: "DELETE",
     });
 
-    router.push("/");
+    router.push("/events/overview");
 
     if (!response.ok) {
       console.error(`Error: ${response.status}`);
@@ -86,7 +86,7 @@ export default function EventDetails() {
       },
     });
 
-    router.push("/");
+    router.push("/events/overview");
 
     if (!response.ok) {
       console.error(`Error: ${response.status}`);
@@ -164,7 +164,7 @@ export default function EventDetails() {
             </StyledCard>
           </StyledCardWrapper>
           <LinkWrapper>
-            <StyledLink href="/">
+            <StyledLink href="/events/overview">
               <span>Back</span>
             </StyledLink>
           </LinkWrapper>
