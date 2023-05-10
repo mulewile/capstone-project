@@ -15,7 +15,7 @@ export const StyledListItem = styled.li`
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    transform: translateX(+10px);
+    transform: translateY(-5px);
     box-shadow: 0 12px 16px rgba(0, 0, 0, 0.4);
     background-color: #114037;
     color: #f2f2f2;

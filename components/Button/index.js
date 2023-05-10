@@ -11,7 +11,7 @@ export const StyledButton = styled.button`
 export const SaveButton = styled(StyledButton)`
   display: flex;
   position: relative;
-  background-color: #34bfa6;
+  background-color: peachpuff;
   padding: 0.7rem 1rem;
   border-radius: 0.6rem;
   color: black;
