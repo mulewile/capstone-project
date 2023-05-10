@@ -16,6 +16,7 @@ const eventSchema = new Schema({
   transportCosts: { type: Number, required: false },
   giftCosts: { type: Number, required: false },
   otherEventExpenses: { type: Number, required: false },
+  eventLikeStatus: { type: Boolean, required: false },
 });
 
 const Event = mongoose.models.Event || mongoose.model("Event", eventSchema);

@@ -68,7 +68,22 @@ export default function EventDetails() {
       return;
     }
   }
+  async function handleLikeEvent() {
+    const response = await fetch(`/api/events/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ eventLikeStatus: !event.eventLikeStatus }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
+    router.push("/");
+
+    if (!response.ok) {
+      console.error(`Error: ${response.status}`);
+      return;
+    }
+  }
   if (!isReady || isLoading || error) {
     return <h1>Loading...</h1>;
   }
@@ -138,6 +153,9 @@ export default function EventDetails() {
                   <h4>REMAINING FUNDS ${eventFunds - totalExpenses}</h4>
                 )
               )}
+              <button type="button" onClick={handleLikeEvent}>
+                {event.eventLikeStatus ? "Unlike" : "Like"}
+              </button>
             </StyledCard>
           </StyledCardWrapper>
           <LinkWrapper>

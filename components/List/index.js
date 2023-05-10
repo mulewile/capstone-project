@@ -18,6 +18,7 @@ export default function List() {
           <StyledListLink href={`/events/${event._id}`} key={uuidv4()}>
             <StyledListItem>
               {event.name}: {event.event}
+              {event.eventLikeStatus ? "👍" : ""}
               <p> {event.location}</p>
             </StyledListItem>
           </StyledListLink>
