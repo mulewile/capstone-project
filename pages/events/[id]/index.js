@@ -9,6 +9,7 @@ import { StyledFooter } from "@/components/Footer";
 import { StyledModalWrapper, StyledModalContent } from "@/components/Modal";
 import { StyledLink } from "@/components/Link";
 import { DeleteRequestButton, EditButton } from "@/components/Button";
+import { LinkWrapper } from "@/components/Link";
 
 const StyledCardWrapper = styled.div`
   flex: 1;
@@ -67,7 +68,22 @@ export default function EventDetails() {
       return;
     }
   }
+  async function handleLikeEvent() {
+    const response = await fetch(`/api/events/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({ eventLikeStatus: !event.eventLikeStatus }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
+    router.push("/");
+
+    if (!response.ok) {
+      console.error(`Error: ${response.status}`);
+      return;
+    }
+  }
   if (!isReady || isLoading || error) {
     return <h1>Loading...</h1>;
   }
@@ -92,13 +108,27 @@ export default function EventDetails() {
         <>
           <StyledCardWrapper>
             <StyledCard>
-              <h2>Name: {event.name}</h2>
-              <h2>Event: {event.event}</h2>
-              <h2>Date: {formatDate(event.date)}</h2>
-              <p>Location: {event.location}</p>
-              <p>Tasks: {event.tasks}</p>
-              <p>Ideas, Message, Thoughts etc: {event.ideas}</p>
-              <p>Guests: {event.guests}</p>
+              <h2>
+                Name: <span>{event.name}</span>
+              </h2>
+              <h2>
+                Event: <span>{event.event}</span>
+              </h2>
+              <h2>
+                Date: <span>{formatDate(event.date)}</span>
+              </h2>
+              <p>
+                Location: <span>{event.location}</span>
+              </p>
+              <p>
+                Tasks: <span>{event.tasks}</span>
+              </p>
+              <p>
+                Ideas, Message, Thoughts etc: <span>{event.ideas}</span>
+              </p>
+              <p>
+                Guests: <span>{event.guests}</span>
+              </p>
               <h3>EXPENSES</h3>
               <h4>AVAILABLE FUNDS ${event.eventBudget}</h4>
               <dl>
@@ -116,16 +146,23 @@ export default function EventDetails() {
               {totalExpenses > 0.01 ? (
                 <h4>TOTAL EXPENSES ${totalExpenses}</h4>
               ) : null}
-              {totalExpenses > event.eventFunds ? (
+              {totalExpenses > eventFunds ? (
                 <h4>BUDGET DEFICIT ${totalExpenses - eventFunds}</h4>
               ) : (
                 totalExpenses > 0.01 && (
                   <h4>REMAINING FUNDS ${eventFunds - totalExpenses}</h4>
                 )
               )}
+              <button type="button" onClick={handleLikeEvent}>
+                {event.eventLikeStatus ? "Unlike" : "Like"}
+              </button>
             </StyledCard>
           </StyledCardWrapper>
-          <StyledLink href="/">Go Back</StyledLink>
+          <LinkWrapper>
+            <StyledLink href="/">
+              <span>Back</span>
+            </StyledLink>
+          </LinkWrapper>
           <EditButton onClick={() => router.push(`/events/${id}/edit`)}>
             Edit
           </EditButton>

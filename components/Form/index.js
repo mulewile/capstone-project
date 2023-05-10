@@ -3,25 +3,28 @@ import { StyledLink } from "../Link";
 import { SaveButton } from "../Button";
 import { StyledHeader } from "../Header";
 import { StyledFooter } from "../Footer";
+import { LinkWrapper } from "../Link";
 
 export const StyledForm = styled.form`
-  max-width: 368px;
-  border: 3px solid #dcae1d;
+  max-width: 375px;
   border-radius: 20px;
   padding: 1rem;
-  margin: 0.5rem;
-  background-color: #cae4db;
+  margin: 1rem;
+  background-color: whitesmoke;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
   margin-top: 80px;
   margin-bottom: 90px;
 
   input {
     display: grid;
+    border-radius: 5px;
     margin-bottom: 8px;
-    font-size: 12px;
+    font-size: 16px;
   }
 
   textarea {
     display: grid;
+    border-radius: 5px;
     margin-bottom: 8px;
     font-size: 16px;
     color: #3a4660;
@@ -126,7 +129,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             max="10000.00"
             step="0.01"
             id="accomodationCosts"
-            name="accomodation"
+            name="accomodationCosts"
             defaultValue={eventToEdit?.accomodationCosts}
           />
           <label htmlFor="transportCosts">Transport</label>
@@ -162,7 +165,9 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
         </fieldset>
         <SaveButton type="submit">{isEditing ? "Update" : "Save"}</SaveButton>
       </StyledForm>
-      <StyledLink href="/">Cancel</StyledLink>
+      <LinkWrapper>
+        <StyledLink href="/">X</StyledLink>
+      </LinkWrapper>
       <StyledFooter></StyledFooter>
     </>
   );
