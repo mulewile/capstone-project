@@ -18,14 +18,14 @@ export const EnterLink = styled(StyledLink)`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 0.7rem 1.5rem;
-  background-color: #ffdab9;
-  color: #1e3766;
+  background-color: #2a4f72;
+  color: white;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.8);
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: #2a4f72;
-    color: white;
+    background-color: #ffdab9;
+    color: #1e3766;
   }
 `;
 

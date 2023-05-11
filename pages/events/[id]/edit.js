@@ -7,7 +7,7 @@ export default function EditEvent() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
-  const { data: event, isLoading, error } = useSWR(`/api/events/${id}`);
+  const { data: event, isLoading, error, mutate } = useSWR(`/api/events/${id}`);
 
   async function onSubmit(editedEvent) {
     const eventId = editedEvent._id;
@@ -20,9 +20,10 @@ export default function EditEvent() {
       body: JSON.stringify(editedEvent),
     });
 
-    router.push(`/events/${eventId}`);
-
-    if (!response.ok) {
+    if (response.ok) {
+      mutate(editedEvent);
+      router.push(`/events/${eventId}`);
+    } else {
       console.error(`Error: ${response.status}`);
     }
   }
