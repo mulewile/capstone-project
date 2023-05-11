@@ -4,7 +4,7 @@ import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 import { EnterLink } from "@/components/Link";
 import { LinkWrapper } from "@/components/Link";
-import homeImage from "../public/images/HomePage.png";
+import homeImage from "../public/images/homePage.png";
 
 export const StyledSection = styled.div`
   margin: 0, auto;
