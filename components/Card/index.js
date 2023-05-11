@@ -7,7 +7,7 @@ export const StyledCard = styled.article`
   margin: 0.25rem;
   margin-top: 70px;
   margin-bottom: 40%;
-  background-color: peachpuff;
+  background-color: whitesmoke;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
 
   h2 {
