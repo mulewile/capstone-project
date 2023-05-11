@@ -77,6 +77,7 @@ export default function EventDetails() {
       return;
     }
   }
+
   async function handleLikeEvent() {
     const response = await fetch(`/api/events/${id}`, {
       method: "PATCH",
