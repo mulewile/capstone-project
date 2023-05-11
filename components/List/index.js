@@ -11,52 +11,30 @@ const StyledListLink = styled.a`
 
 function eventCountDown(eventDate) {
   const date = new Date(eventDate);
-
   const currentDate = new Date();
-  const currentMonth = currentDate.getMonth();
-  const currentDay = currentDate.getDate();
 
-  const eventMonth = date.getMonth();
-  const eventDay = date.getDate();
-
-  function getCurrentWeek(currentDay) {
-    const currentWeek = currentDay / 7;
-    return currentWeek;
-  }
-
-  function getEventWeeks(eventDays) {
-    const eventWeeks = eventDays / 7;
-    return eventWeeks;
-  }
-
-  const currentWeek = getCurrentWeek(currentDay);
-  const eventWeeks = getEventWeeks(eventDay);
-  const monthResult = eventMonth > currentMonth ? eventMonth - currentMonth : 0;
-  const weekResult =
-    Math.floor(eventWeeks) >= Math.floor(currentWeek)
-      ? Math.floor(eventWeeks)
-      : 0;
-  const dayResult = eventDay > currentDay ? eventDay - currentDay : 0;
+  const timeDifference = date.getTime() - currentDate.getTime();
+  const dayResult = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
   const countdownObject = {
     daysToEvent: dayResult,
-    weeksToEvent: weekResult,
-    monthsToEvent: monthResult,
   };
 
-  if (countdownObject.daysToEvent > 28) {
-    return `${countdownObject.monthsToEvent} Month(s), ${countdownObject.weeksToEvent} Week(s) Remaining!`;
-  } else if (
-    countdownObject.daysToEvent > 7 &&
-    countdownObject.daysToEvent < 21
-  ) {
-    return `${countdownObject.weeksToEvent} Week(s), ${countdownObject.daysToEvent} Day(s) Remaining`;
-  } else if (countdownObject.daysToEvent > 1) {
-    return `Event Starts in ${countdownObject.daysToEvent} Day(s)`;
+  if (countdownObject.daysToEvent >= 2 && countdownObject.daysToEvent <= 7) {
+    return `Event Starts in ${countdownObject.daysToEvent} Days`;
   } else if (countdownObject.daysToEvent === 1) {
     return "Event Starts Tomorrow";
-  } else {
+  } else if (countdownObject.daysToEvent === 0) {
     return "Event is Today 🎉";
+  } else if (countdownObject.daysToEvent === 7) {
+    return "Event Starts in a Week";
+  } else if (
+    countdownObject.daysToEvent === 30 ||
+    countdownObject.daysToEvent === 31
+  ) {
+    return "1 Month Remaining";
+  } else {
+    return `${countdownObject.daysToEvent} Days Remaining`;
   }
 }
 
