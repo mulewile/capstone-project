@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
-import Image from "next/image";
 import Button from "@/components/Button";
 import Expenses from "@/components/Expenses";
+import { StyledLoader } from "@/components/Loader";
 import { useState } from "react";
 import { StyledCard } from "@/components/Card";
 import { StyledHeader } from "@/components/Header";
@@ -17,7 +17,7 @@ import {
   EditButton,
 } from "@/components/Button";
 import { LinkWrapper } from "@/components/Link";
-import homeImage from "../../../public/images/home.png";
+import loadImage from "../../../public/images/pageLoad.png";
 
 const StyledCardWrapper = styled.div`
   flex: 1;
@@ -25,18 +25,9 @@ const StyledCardWrapper = styled.div`
   padding: 1rem;
 `;
 
-const StyledLoader = styled(Image)`
-  object-fit: contain;
-`;
-
 function formatDate(eventDate) {
   const date = new Date(eventDate);
-  const month = date.toLocaleString("default", { month: "long" });
-  const day = date.getDate();
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const formatedEventDate = `${month} ${day}, ${year} - ${hours}:${minutes} hrs`;
+  const formatedEventDate = `${date.toLocaleDateString()}, ${date.toLocaleTimeString()} hrs`;
 
   return formatedEventDate;
 }
@@ -60,7 +51,7 @@ export default function EventDetails() {
   if (!isReady || isLoading || error) {
     return (
       <StyledLoader
-        src={homeImage}
+        src={loadImage}
         width={375}
         height={667}
         alt="Events are loading ...!"

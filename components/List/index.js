@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import useSWR from "swr";
 import { v4 as uuidv4 } from "uuid";
+import { StyledLoader } from "../Loader";
 import { StyledListItem, StyledList } from "./StyledListLayout";
+import dataLoadImage from "../../public/images/dataLoad.png";
 
 const StyledListLink = styled.a`
   text-decoration: none;
@@ -19,13 +21,11 @@ function eventCountDown(eventDate) {
 
   function getCurrentWeek(currentDay) {
     const currentWeek = currentDay / 7;
-    console.log("Week", Math.floor(currentWeek));
     return currentWeek;
   }
 
   function getEventWeeks(eventDays) {
     const eventWeeks = eventDays / 7;
-    console.log("Week", Math.floor(eventWeeks));
     return eventWeeks;
   }
 
@@ -64,7 +64,14 @@ export default function List() {
   const { data, error } = useSWR("/api/events");
 
   if (!data) {
-    return <h1>Loading events...</h1>;
+    return (
+      <StyledLoader
+        src={dataLoadImage}
+        width={375}
+        height={667}
+        alt="Events are loading ...!"
+      />
+    );
   }
   if (error) {
     return <h1>Error fetching events</h1>;
@@ -79,7 +86,7 @@ export default function List() {
               {event.name}: {event.event}
               {event.eventLikeStatus ? "❤️" : ""}
               <p> {event.location}</p>
-              <p>{eventCountDown(event.date)}</p>
+              {eventCountDown(event.date)}
             </StyledListItem>
           </StyledListLink>
         ))}
