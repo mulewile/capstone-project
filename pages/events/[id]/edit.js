@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Form from "../../../components/Form";
+import { StyledFooter } from "@/components/Footer";
 
 export default function EditEvent() {
   const router = useRouter();
@@ -31,8 +32,11 @@ export default function EditEvent() {
   }
 
   return (
-    <div>
-      <Form isEditing eventToEdit={event} onSubmit={onSubmit} />
-    </div>
+    <>
+      <div>
+        <Form isEditing eventToEdit={event} onSubmit={onSubmit} />
+      </div>
+      <StyledFooter>WePlan</StyledFooter>
+    </>
   );
 }

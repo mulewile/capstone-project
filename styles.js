@@ -17,7 +17,7 @@ export default createGlobalStyle`
     max-height: 300;
     margin: 0 auto;
     font-family: system-ui;
-    background-color: #fee2e2;
+    background-color: peachpuff;
     padding: 0;
   }
 `;

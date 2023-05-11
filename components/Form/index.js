@@ -10,7 +10,7 @@ export const StyledForm = styled.form`
   border-radius: 20px;
   padding: 1rem;
   margin: 1rem;
-  background-color: whitesmoke;
+  background-color: white;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
   margin-top: 80px;
   margin-bottom: 90px;
@@ -18,16 +18,17 @@ export const StyledForm = styled.form`
   input {
     display: grid;
     border-radius: 5px;
-    margin-bottom: 8px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     font-size: 16px;
   }
 
   textarea {
     display: grid;
     border-radius: 5px;
-    margin-bottom: 8px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     font-size: 16px;
-    color: #3a4660;
   }
 `;
 
@@ -115,9 +116,6 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="foodCosts">Food & Drinks</label>
           <input
             type="number"
-            min="0.00"
-            max="10000.00"
-            step="0.01"
             id="foodCosts"
             name="foodCosts"
             defaultValue={eventToEdit?.foodCosts}
@@ -125,9 +123,6 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="accomodationCosts">Accomodation</label>
           <input
             type="number"
-            min="0.00"
-            max="10000.00"
-            step="0.01"
             id="accomodationCosts"
             name="accomodationCosts"
             defaultValue={eventToEdit?.accomodationCosts}
@@ -135,9 +130,6 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="transportCosts">Transport</label>
           <input
             type="number"
-            min="0.00"
-            max="10000.00"
-            step="0.01"
             id="transportCosts"
             name="transportCosts"
             defaultValue={eventToEdit?.transportCosts}
@@ -145,9 +137,6 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="giftCosts">Gifts</label>
           <input
             type="number"
-            min="0.00"
-            max="10000.00"
-            step="0.01"
             id="giftCosts"
             name="giftCosts"
             defaultValue={eventToEdit?.giftCosts}
@@ -155,9 +144,6 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="otherEventExpenses">Other Expenses</label>
           <input
             type="number"
-            min="0.00"
-            max="10000.00"
-            step="0.01"
             id="otherEventExpenses"
             name="otherEventExpenses"
             defaultValue={eventToEdit?.otherEventExpenses}
@@ -168,7 +154,6 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
       <LinkWrapper>
         <StyledLink href="/">X</StyledLink>
       </LinkWrapper>
-      <StyledFooter></StyledFooter>
     </>
   );
 }

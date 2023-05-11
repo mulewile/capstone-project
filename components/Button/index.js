@@ -1,57 +1,63 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  border-radius: 10px;
-  padding: 10px;
-  color: #12343b;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.6rem;
+  background-color: #2a4f72;
+  color: white;
   font-size: 12px;
-  margin-bottom: 8px;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+  border: none;
 `;
 
 export const SaveButton = styled(StyledButton)`
   display: flex;
   position: relative;
-  background-color: peachpuff;
-  padding: 0.7rem 1rem;
-  border-radius: 0.6rem;
-  color: black;
+  margin-top: 20px;
   font-size: 13px;
-  font-weight: bold;
 `;
 
 export const EditButton = styled(StyledButton)`
   display: flex;
   position: fixed;
   margin: 0;
-  background-color: #7c677f;
+  bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 70px;
-  padding: 0.7rem 1rem;
-  border-radius: 0.6rem;
-  color: white;
   font-size: 13px;
-  font-weight: bold;
 `;
 
 export const DeleteRequestButton = styled(StyledButton)`
   display: flex;
   position: fixed;
   margin: 0;
-  background-color: #ff9aa2;
+  background-color: #7c677f;
   bottom: 70px;
   left: calc(50% - 170px);
-  padding: 0.7rem 1rem;
-  border-radius: 0.6rem;
-  color: black;
-  font-weight: bold;
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background-color: #ff9aa2;
-    box-shadow: 0 0 5px #ff9aa2, 0 0 10px #ff9aa2, 0 0 20px #ff9aa2,
-      0 0 40px #ff9aa2;
+    background-color: #990000;
   }
+`;
+
+export const DeleteConfirmButton = styled(StyledButton)`
+  margin-left: 4rem;
+  background-color: #7c677f;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #990000;
+  }
+`;
+
+export const EventLikeButton = styled(StyledButton)`
+  background-color: #2a4f72;
+  font-size: 12px;
+  padding: 0.5rem 1rem;
 `;
 
 export default function Button({ children, type, onClick }) {
