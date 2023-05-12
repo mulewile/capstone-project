@@ -114,7 +114,7 @@ export default function EventDetails() {
         <>
           <StyledCardWrapper>
             <StyledCard>
-              <h2>Name: {event.name}</h2>
+              <h2>{event.name}</h2>
               <p>
                 Event: <span>{event.event}</span>
               </p>

@@ -32,7 +32,7 @@ export default function Expenses() {
           <h3>EXPENSES</h3>
           <h4>AVAILABLE FUNDS ${event.eventBudget}</h4>
           <dl>
-            <dt>Foodsss & Drinksss</dt>
+            <dt>Food & Drink</dt>
             <dd>${event.foodCosts}</dd>
             <dt>Accomodation</dt>
             <dd>${event.accomodationCosts}</dd>
@@ -53,7 +53,7 @@ export default function Expenses() {
           )}
         </>
       ) : (
-        <h4>Event has no expenses yet</h4>
+        <h4>EVENT HAS NO EXPENSES</h4>
       )}
     </>
   );
