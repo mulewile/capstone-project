@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { StyledLink } from "../Link";
 import { SaveButton } from "../Button";
 import { StyledHeader } from "../Header";
-import { StyledFooter } from "../Footer";
 import { LinkWrapper } from "../Link";
 
 export const StyledForm = styled.form`
@@ -20,7 +19,7 @@ export const StyledForm = styled.form`
     border-radius: 5px;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
-    font-size: 16px;
+    font-size: 12px;
   }
 
   textarea {
@@ -106,9 +105,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="eventBudget">Budget</label>
           <input
             type="number"
-            min="0.00"
-            max="10000.00"
-            step="0.01"
+            min={0}
             id="eventBudget"
             name="eventBudget"
             defaultValue={eventToEdit?.eventBudget}
@@ -116,6 +113,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="foodCosts">Food & Drinks</label>
           <input
             type="number"
+            min={0}
             id="foodCosts"
             name="foodCosts"
             defaultValue={eventToEdit?.foodCosts}
@@ -123,6 +121,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="accomodationCosts">Accomodation</label>
           <input
             type="number"
+            min={0}
             id="accomodationCosts"
             name="accomodationCosts"
             defaultValue={eventToEdit?.accomodationCosts}
@@ -130,6 +129,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="transportCosts">Transport</label>
           <input
             type="number"
+            min={0}
             id="transportCosts"
             name="transportCosts"
             defaultValue={eventToEdit?.transportCosts}
@@ -137,6 +137,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="giftCosts">Gifts</label>
           <input
             type="number"
+            min={0}
             id="giftCosts"
             name="giftCosts"
             defaultValue={eventToEdit?.giftCosts}
@@ -144,6 +145,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           <label htmlFor="otherEventExpenses">Other Expenses</label>
           <input
             type="number"
+            min={0}
             id="otherEventExpenses"
             name="otherEventExpenses"
             defaultValue={eventToEdit?.otherEventExpenses}
@@ -152,7 +154,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
         <SaveButton type="submit">{isEditing ? "Update" : "Save"}</SaveButton>
       </StyledForm>
       <LinkWrapper>
-        <StyledLink href="/">X</StyledLink>
+        <StyledLink href="/events/overview">X</StyledLink>
       </LinkWrapper>
     </>
   );

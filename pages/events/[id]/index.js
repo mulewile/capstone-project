@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
 import Button from "@/components/Button";
+import Expenses from "@/components/Expenses";
+import { StyledLoader } from "@/components/Loader";
 import { useState } from "react";
 import { StyledCard } from "@/components/Card";
 import { StyledHeader } from "@/components/Header";
@@ -15,15 +17,19 @@ import {
   EditButton,
 } from "@/components/Button";
 import { LinkWrapper } from "@/components/Link";
+import loadImage from "../../../public/images/pageLoad.png";
 
 const StyledCardWrapper = styled.div`
   flex: 1;
   overflow: auto;
   padding: 1rem;
 `;
-function formatDate(timeStamp) {
-  const date = new Date(timeStamp);
-  return `${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`;
+
+function formatDate(eventDate) {
+  const date = new Date(eventDate);
+  const formatedEventDate = `${date.toLocaleDateString()}, ${date.toLocaleTimeString()} hrs`;
+
+  return formatedEventDate;
 }
 
 export default function EventDetails() {
@@ -43,27 +49,19 @@ export default function EventDetails() {
   } = useSWR(id ? `/api/events/${id}` : null);
 
   if (!isReady || isLoading || error) {
-    return <h1>Loading...</h1>;
+    return (
+      <StyledLoader
+        src={loadImage}
+        width={375}
+        height={667}
+        alt="Events are loading ...!"
+      />
+    );
   }
 
   if (!event) {
     return <h1>No event found.</h1>;
   }
-
-  const eventFunds = event.eventBudget;
-
-  const initialExpenses = [
-    event.foodCosts,
-    event.accomodationCosts,
-    event.transportCosts,
-    event.giftCosts,
-    event.otherEventExpenses,
-  ];
-
-  const totalExpenses = initialExpenses.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  );
 
   async function handleDeleteEvent() {
     const response = await fetch(`/api/events/${id}`, {
@@ -135,30 +133,7 @@ export default function EventDetails() {
               <p>
                 Guests: <span>{event.guests}</span>
               </p>
-              <h3>EXPENSES</h3>
-              <h4>AVAILABLE FUNDS ${event.eventBudget}</h4>
-              <dl>
-                <dt>Food & Drinks</dt>
-                <dd>${event.foodCosts}</dd>
-                <dt>Accomodation</dt>
-                <dd>${event.accomodationCosts}</dd>
-                <dt>Transport</dt>
-                <dd>${event.transportCosts}</dd>
-                <dt>Gifts</dt>
-                <dd>${event.giftCosts}</dd>
-                <dt>Other Expenses</dt>
-                <dd>${event.otherEventExpenses}</dd>
-              </dl>
-              {totalExpenses > 0.01 ? (
-                <h4>TOTAL EXPENSES ${totalExpenses}</h4>
-              ) : null}
-              {totalExpenses > eventFunds ? (
-                <h4>BUDGET DEFICIT ${totalExpenses - eventFunds}</h4>
-              ) : (
-                totalExpenses > 0.01 && (
-                  <h4>REMAINING FUNDS ${eventFunds - totalExpenses}</h4>
-                )
-              )}
+              <Expenses />
               <EventLikeButton type="button" onClick={handleLikeEvent}>
                 {event.eventLikeStatus ? "Unlike" : "Like"}
               </EventLikeButton>

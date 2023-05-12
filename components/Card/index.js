@@ -27,10 +27,12 @@ export const StyledCard = styled.article`
     font-weight: bold;
     margin-bottom: 8px;
     text-align: justify;
+    color: #2a4f72;
   }
 
   span {
     font-weight: normal;
+    color: #7c677f;
   }
 
   dt {

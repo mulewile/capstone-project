@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { StyledHeader } from "@/components/Header";
-import { StyledFooter } from "@/components/Footer";
 import { EnterLink } from "@/components/Link";
 import { LinkWrapper } from "@/components/Link";
 import homeImage from "../public/images/homePage.png";
@@ -10,13 +8,15 @@ export const StyledSection = styled.div`
   margin: 0, auto;
   padding-bottom: 70px;
 `;
+const StyledImage = styled(Image)`
+  object-fit: cover;
+`;
 
 export default function HomePage() {
   return (
     <>
-      <StyledHeader></StyledHeader>
       <div>
-        <Image
+        <StyledImage
           src={homeImage}
           alt="Main image before entering app"
           width={375}
@@ -28,7 +28,6 @@ export default function HomePage() {
           <span>ENTER</span>
         </EnterLink>
       </LinkWrapper>
-      <StyledFooter>WePlan</StyledFooter>
     </>
   );
 }
