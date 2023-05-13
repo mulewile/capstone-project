@@ -26,6 +26,8 @@ function eventCountDown(eventDate) {
     return "Event Starts Tomorrow";
   } else if (countdownObject.daysToEvent === 0) {
     return "Event is Today 🎉";
+  } else if (countdownObject.daysToEvent < 0) {
+    return <p>Elapsed Event</p>;
   } else if (countdownObject.daysToEvent === 7) {
     return "Event Starts in a Week";
   } else if (

@@ -25,13 +25,6 @@ const StyledCardWrapper = styled.div`
   padding: 1rem;
 `;
 
-function formatDate(eventDate) {
-  const date = new Date(eventDate);
-  const formatedEventDate = `${date.toLocaleDateString()}, ${date.toLocaleTimeString()} hrs`;
-
-  return formatedEventDate;
-}
-
 export default function EventDetails() {
   const [deleteModal, setDeleteModal] = useState(false);
 
@@ -62,6 +55,21 @@ export default function EventDetails() {
   if (!event) {
     return <h1>No event found.</h1>;
   }
+
+  const date = new Date(event.date);
+  const options = {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+  const formattedDate = new Intl.DateTimeFormat(
+    navigator.language,
+    options
+  ).format(date);
 
   async function handleDeleteEvent() {
     const response = await fetch(`/api/events/${id}`, {
@@ -119,7 +127,7 @@ export default function EventDetails() {
                 Event: <span>{event.event}</span>
               </p>
               <p>
-                Date: <span>{formatDate(event.date)}</span>
+                Date: <span>{formattedDate}</span>
               </p>
               <p>
                 Location: <span>{event.location}</span>

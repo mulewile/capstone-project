@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
+
 export default function Expenses() {
   const router = useRouter();
   const { id } = router.query;

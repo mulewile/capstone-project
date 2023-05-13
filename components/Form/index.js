@@ -67,7 +67,11 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           type="datetime-local"
           id="date"
           name="date"
-          defaultValue={eventToEdit?.date}
+          defaultValue={
+            eventToEdit?.date
+              ? new Date(eventToEdit.date).toISOString().slice(0, 16)
+              : null
+          }
         />
         <label htmlFor="location">Location:</label>
         <input
