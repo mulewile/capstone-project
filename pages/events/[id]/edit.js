@@ -7,8 +7,16 @@ export default function EditEvent() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
-  const { data: event, isLoading, error, mutate } = useSWR(`/api/events/${id}`);
+  const {
+    data: event,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR(id ? `/api/events/${id}` : null);
 
+  if (!event) {
+    return;
+  }
   async function onSubmit(editedEvent) {
     const eventId = editedEvent._id;
 
@@ -29,7 +37,7 @@ export default function EditEvent() {
   }
 
   if (!isReady || isLoading || error) {
-    return <h1>Loading...</h1>;
+    return <h1>Loading..IT</h1>;
   }
 
   return (

@@ -19,7 +19,7 @@ export const StyledForm = styled.form`
     border-radius: 5px;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   textarea {
@@ -27,7 +27,10 @@ export const StyledForm = styled.form`
     border-radius: 5px;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
-    font-size: 16px;
+    font-size: 13px;
+  }
+  fieldset {
+    border-radius: 10px;
   }
 `;
 
@@ -51,6 +54,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           type="text"
           id="name"
           name="name"
+          placeholder="e.g. James, Mum, KN Football Club"
           defaultValue={eventToEdit?.name}
           required
         />
@@ -59,8 +63,10 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           type="text"
           id="event"
           name="event"
+          placeholder="e.g. Wedding, Conference"
           defaultValue={eventToEdit?.event}
           required
+          aria-label="Enter an event"
         />
         <label htmlFor="date">Date:</label>
         <input
@@ -78,6 +84,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           type="text"
           id="location"
           name="location"
+          placeholder="e.g. Town Hall, Tokyo"
           defaultValue={eventToEdit?.location}
         />
         <label htmlFor="tasks">Tasks:</label>
@@ -86,6 +93,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           maxLength={200}
           id="tasks"
           name="tasks"
+          placeholder="e.g. Book Hall, Write Speech, Bake"
           defaultValue={eventToEdit?.tasks}
         />
         <label htmlFor="ideas">Ideas, Message, Thoughts:</label>
@@ -94,6 +102,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           maxLength={300}
           id="ideas"
           name="ideas"
+          placeholder="e.g. Photo Booth, Suggest Lake Bo as holiday destination, Movie ticket as gift"
           defaultValue={eventToEdit?.ideas}
         />
         <label htmlFor="guests">Guests:</label>
@@ -102,6 +111,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           maxLength={100}
           id="guests"
           name="guests"
+          placeholder="e.g. 20, Kim, Mat, Entire Frontend team"
           defaultValue={eventToEdit?.guests}
         />
         <fieldset>
@@ -112,6 +122,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             min={0}
             id="eventBudget"
             name="eventBudget"
+            placeholder=""
             defaultValue={eventToEdit?.eventBudget}
           />
           <label htmlFor="foodCosts">Food & Drinks</label>

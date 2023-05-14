@@ -31,7 +31,6 @@ export default function Expenses() {
       {totalExpenses > 0.1 ? (
         <>
           <h3>EXPENSES</h3>
-          <h4>AVAILABLE FUNDS ${event.eventBudget}</h4>
           <dl>
             <dt>Food & Drink</dt>
             <dd>${event.foodCosts}</dd>
@@ -44,6 +43,7 @@ export default function Expenses() {
             <dt>Other Expenses</dt>
             <dd>${event.otherEventExpenses}</dd>
           </dl>
+          <h4>AVAILABLE FUNDS ${event.eventBudget}</h4>
           {totalExpenses > 1 ? <h4>TOTAL EXPENSES ${totalExpenses}</h4> : null}
           {totalExpenses > eventFunds ? (
             <h4>BUDGET DEFICIT ${totalExpenses - eventFunds}</h4>
