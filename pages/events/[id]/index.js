@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import useSound from "use-sound";
 import useSWR from "swr";
 import styled from "styled-components";
 import Button from "@/components/Button";
@@ -26,6 +27,9 @@ const StyledCardWrapper = styled.div`
 `;
 
 export default function EventDetails() {
+  const [playDelete] = useSound("/sounds/delete.mp3", { volume: 0.1 });
+  const [playToggleLike] = useSound("/sounds/toggle_like.wav", { volume: 0.1 });
+
   const [deleteModal, setDeleteModal] = useState(false);
 
   function handleModal() {
@@ -66,6 +70,7 @@ export default function EventDetails() {
     minute: "numeric",
     hour12: true,
   };
+
   const formattedDate = new Intl.DateTimeFormat(
     navigator.language,
     options
@@ -110,7 +115,13 @@ export default function EventDetails() {
             <StyledModalContent>
               <h2>What would you like to do?</h2>
             </StyledModalContent>
-            <DeleteConfirmButton type="button" onClick={handleDeleteEvent}>
+            <DeleteConfirmButton
+              type="button"
+              onClick={() => {
+                playDelete();
+                handleDeleteEvent();
+              }}
+            >
               Delete
             </DeleteConfirmButton>
             <Button type="button" onClick={() => setDeleteModal(false)}>
@@ -142,7 +153,13 @@ export default function EventDetails() {
                 Guests: <span>{event.guests}</span>
               </p>
               <Expenses />
-              <EventLikeButton type="button" onClick={handleLikeEvent}>
+              <EventLikeButton
+                type="button"
+                onClick={() => {
+                  playToggleLike();
+                  handleLikeEvent();
+                }}
+              >
                 {event.eventLikeStatus ? "Unlike" : "Like"}
               </EventLikeButton>
             </StyledCard>
@@ -152,7 +169,11 @@ export default function EventDetails() {
               <span>Back</span>
             </StyledLink>
           </LinkWrapper>
-          <EditButton onClick={() => router.push(`/events/${id}/edit`)}>
+          <EditButton
+            onClick={() => {
+              router.push(`/events/${id}/edit`);
+            }}
+          >
             Edit
           </EditButton>
           <DeleteRequestButton

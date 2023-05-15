@@ -15,8 +15,9 @@ export default function EditEvent() {
   } = useSWR(id ? `/api/events/${id}` : null);
 
   if (!event) {
-    return;
+    return <h1>No Event Found</h1>;
   }
+
   async function onSubmit(editedEvent) {
     const eventId = editedEvent._id;
 

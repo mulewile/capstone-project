@@ -14,7 +14,6 @@ export default createGlobalStyle`
     display: grid;
     min-height: 100vh;
     max-width: 375px;
-    max-height: 300;
     margin: 0 auto;
     font-family: system-ui;
     background-color: peachpuff;

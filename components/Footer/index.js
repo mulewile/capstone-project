@@ -7,6 +7,7 @@ export const StyledFooter = styled.footer`
   font-size: 20px;
   margin: 0 auto;
   max-width: 375px;
+  z-index: 2;
   color: white;
   padding: 1rem;
   position: fixed;

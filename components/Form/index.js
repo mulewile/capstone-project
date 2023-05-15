@@ -122,7 +122,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             min={0}
             id="eventBudget"
             name="eventBudget"
-            placeholder=""
+            placeholder="amount"
             defaultValue={eventToEdit?.eventBudget}
           />
           <label htmlFor="foodCosts">Food & Drinks</label>
@@ -131,6 +131,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             min={0}
             id="foodCosts"
             name="foodCosts"
+            placeholder="amount"
             defaultValue={eventToEdit?.foodCosts}
           />
           <label htmlFor="accomodationCosts">Accomodation</label>
@@ -139,6 +140,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             min={0}
             id="accomodationCosts"
             name="accomodationCosts"
+            placeholder="amount"
             defaultValue={eventToEdit?.accomodationCosts}
           />
           <label htmlFor="transportCosts">Transport</label>
@@ -147,6 +149,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             min={0}
             id="transportCosts"
             name="transportCosts"
+            placeholder="amount"
             defaultValue={eventToEdit?.transportCosts}
           />
           <label htmlFor="giftCosts">Gifts</label>
@@ -155,6 +158,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             min={0}
             id="giftCosts"
             name="giftCosts"
+            placeholder="amount"
             defaultValue={eventToEdit?.giftCosts}
           />
           <label htmlFor="otherEventExpenses">Other Expenses</label>
@@ -163,6 +167,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
             min={0}
             id="otherEventExpenses"
             name="otherEventExpenses"
+            placeholder="amount"
             defaultValue={eventToEdit?.otherEventExpenses}
           />
         </fieldset>
