@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
+
 export default function Expenses() {
   const router = useRouter();
   const { id } = router.query;
@@ -11,14 +12,23 @@ export default function Expenses() {
   if (error) {
     return <h1>Error fetching events</h1>;
   }
-  const eventFunds = event.eventBudget;
+
+  const {
+    foodCosts,
+    accomodationCosts,
+    transportCosts,
+    giftCosts,
+    otherEventExpenses,
+    eventBudget,
+  } = event;
+  const eventFunds = eventBudget;
 
   const initialExpenses = [
-    event.foodCosts,
-    event.accomodationCosts,
-    event.transportCosts,
-    event.giftCosts,
-    event.otherEventExpenses,
+    foodCosts,
+    accomodationCosts,
+    transportCosts,
+    giftCosts,
+    otherEventExpenses,
   ];
 
   const totalExpenses = initialExpenses.reduce(
@@ -30,19 +40,19 @@ export default function Expenses() {
       {totalExpenses > 0.1 ? (
         <>
           <h3>EXPENSES</h3>
-          <h4>AVAILABLE FUNDS ${event.eventBudget}</h4>
           <dl>
-            <dt>Foodsss & Drinksss</dt>
-            <dd>${event.foodCosts}</dd>
+            <dt>Food & Drink</dt>
+            <dd>${foodCosts}</dd>
             <dt>Accomodation</dt>
-            <dd>${event.accomodationCosts}</dd>
+            <dd>${accomodationCosts}</dd>
             <dt>Transport</dt>
-            <dd>${event.transportCosts}</dd>
+            <dd>${transportCosts}</dd>
             <dt>Gifts</dt>
-            <dd>${event.giftCosts}</dd>
+            <dd>${giftCosts}</dd>
             <dt>Other Expenses</dt>
-            <dd>${event.otherEventExpenses}</dd>
+            <dd>${otherEventExpenses}</dd>
           </dl>
+          <h4>AVAILABLE FUNDS ${eventBudget}</h4>
           {totalExpenses > 1 ? <h4>TOTAL EXPENSES ${totalExpenses}</h4> : null}
           {totalExpenses > eventFunds ? (
             <h4>BUDGET DEFICIT ${totalExpenses - eventFunds}</h4>
@@ -53,7 +63,7 @@ export default function Expenses() {
           )}
         </>
       ) : (
-        <h4>Event has no expenses yet</h4>
+        <h4>EVENT HAS NO EXPENSES</h4>
       )}
     </>
   );

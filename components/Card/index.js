@@ -35,9 +35,16 @@ export const StyledCard = styled.article`
     color: #7c677f;
   }
 
+  dl {
+    background-color: lightgrey;
+    border-radius: 20px;
+    padding: 0.5rem 0.5rem;
+    padding-bottom: 8px;
+  }
   dt {
     font-weight: bold;
     padding: 0.5rem 0.5rem;
+    background-color: lightgrey;
   }
 `;
 

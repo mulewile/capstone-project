@@ -10,6 +10,7 @@ export const StyledButton = styled.button`
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-right: 2rem;
+  cursor: pointer;
   border: none;
 `;
 
@@ -18,6 +19,7 @@ export const SaveButton = styled(StyledButton)`
   position: relative;
   margin-top: 20px;
   font-size: 13px;
+  z-index: 1;
 `;
 
 export const EditButton = styled(StyledButton)`
