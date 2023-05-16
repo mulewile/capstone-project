@@ -26,6 +26,25 @@ const StyledCardWrapper = styled.div`
   padding: 1rem;
 `;
 
+function formatDate(dateStamp) {
+  const date = new Date(dateStamp);
+  const options = {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+
+  const formattedDate = new Intl.DateTimeFormat(
+    navigator.language,
+    options
+  ).format(date);
+  return formattedDate;
+}
+
 export default function EventDetails() {
   const [playDelete] = useSound("/sounds/delete.mp3", { volume: 0.1 });
   const [playToggleLike] = useSound("/sounds/toggle_like.wav", { volume: 0.1 });
@@ -59,22 +78,6 @@ export default function EventDetails() {
   if (!event) {
     return <h1>No event found.</h1>;
   }
-
-  const date = new Date(event.date);
-  const options = {
-    weekday: "long",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  };
-
-  const formattedDate = new Intl.DateTimeFormat(
-    navigator.language,
-    options
-  ).format(date);
 
   async function handleDeleteEvent() {
     const response = await fetch(`/api/events/${id}`, {
@@ -138,7 +141,7 @@ export default function EventDetails() {
                 Event: <span>{event.event}</span>
               </p>
               <p>
-                Date: <span>{formattedDate}</span>
+                Date: <span>{formatDate(event.date)}</span>
               </p>
               <p>
                 Location: <span>{event.location}</span>
