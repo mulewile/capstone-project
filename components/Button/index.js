@@ -47,7 +47,7 @@ export const DeleteRequestButton = styled(StyledButton)`
 `;
 
 export const DeleteConfirmButton = styled(StyledButton)`
-  margin-left: 4rem;
+  margin-left: 2.6rem;
   background-color: #7c677f;
   transition: all 0.2s ease-in-out;
 

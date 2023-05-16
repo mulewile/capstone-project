@@ -112,11 +112,11 @@ export default function EventDetails() {
   return (
     <>
       <StyledHeader>Details</StyledHeader>
-      {deleteModal ? (
-        <>
+      <>
+        {deleteModal ? (
           <StyledModalWrapper>
             <StyledModalContent>
-              <h2>What would you like to do?</h2>
+              <h4>What would you like to do?</h4>
             </StyledModalContent>
             <DeleteConfirmButton
               type="button"
@@ -131,54 +131,53 @@ export default function EventDetails() {
               Keep
             </Button>
           </StyledModalWrapper>
-        </>
-      ) : (
-        <>
-          <StyledCardWrapper>
-            <StyledCard>
-              <h2>{event.name}</h2>
-              <p>
-                Event: <span>{event.event}</span>
-              </p>
-              <p>
-                Date: <span>{formatDate(event.date)}</span>
-              </p>
-              <p>
-                Location: <span>{event.location}</span>
-              </p>
-              <p>
-                Tasks: <span>{event.tasks}</span>
-              </p>
-              <p>
-                Ideas, Message, Thoughts etc: <span>{event.ideas}</span>
-              </p>
-              <p>
-                Guests: <span>{event.guests}</span>
-              </p>
-              <Expenses />
-              <EventLikeButton
-                type="button"
-                onClick={() => {
-                  playToggleLike();
-                  handleLikeEvent();
-                }}
-              >
-                {event.eventLikeStatus ? "Unlike" : "Like"}
-              </EventLikeButton>
-            </StyledCard>
-          </StyledCardWrapper>
-          <LinkWrapper>
-            <StyledLink href="/events/overview">
-              <span>Back</span>
-            </StyledLink>
-          </LinkWrapper>
-          <EditButton
-            onClick={() => {
-              router.push(`/events/${id}/edit`);
-            }}
-          >
-            Edit
-          </EditButton>
+        ) : null}
+        <StyledCardWrapper>
+          <StyledCard>
+            <h2>{event.name}</h2>
+            <p>
+              Event: <span>{event.event}</span>
+            </p>
+            <p>
+              Date: <span>{formatDate(event.date)}</span>
+            </p>
+            <p>
+              Location: <span>{event.location}</span>
+            </p>
+            <p>
+              Tasks: <span>{event.tasks}</span>
+            </p>
+            <p>
+              Ideas, Message, Thoughts etc: <span>{event.ideas}</span>
+            </p>
+            <p>
+              Guests: <span>{event.guests}</span>
+            </p>
+            <Expenses />
+            <EventLikeButton
+              type="button"
+              onClick={() => {
+                playToggleLike();
+                handleLikeEvent();
+              }}
+            >
+              {event.eventLikeStatus ? "Unlike" : "Like"}
+            </EventLikeButton>
+          </StyledCard>
+        </StyledCardWrapper>
+        <LinkWrapper>
+          <StyledLink href="/events/overview">
+            <span>Back</span>
+          </StyledLink>
+        </LinkWrapper>
+        <EditButton
+          onClick={() => {
+            router.push(`/events/${id}/edit`);
+          }}
+        >
+          Edit
+        </EditButton>
+        {deleteModal ? null : (
           <DeleteRequestButton
             type="button"
             onClick={() => {
@@ -187,8 +186,8 @@ export default function EventDetails() {
           >
             Delete
           </DeleteRequestButton>
-        </>
-      )}
+        )}
+      </>
       <StyledFooter>WePlan</StyledFooter>
     </>
   );
