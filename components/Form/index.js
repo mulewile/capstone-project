@@ -47,7 +47,6 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
 
   return (
     <>
-      <StyledHeader>Edit Event</StyledHeader>
       <StyledForm onSubmit={onEdit}>
         <label htmlFor="name">Name:</label>
         <input
