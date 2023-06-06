@@ -112,11 +112,11 @@ export default function EventDetails() {
   return (
     <>
       <StyledHeader>Details</StyledHeader>
-      {deleteModal ? (
         <>
-          <StyledModalWrapper>
+          <StyledCardWrapper>
+            {deleteModal? (<StyledModalWrapper>
             <StyledModalContent>
-              <h2>What would you like to do?</h2>
+              <p>Confirm Choice</p>
             </StyledModalContent>
             <DeleteConfirmButton
               type="button"
@@ -130,11 +130,7 @@ export default function EventDetails() {
             <Button type="button" onClick={() => setDeleteModal(false)}>
               Keep
             </Button>
-          </StyledModalWrapper>
-        </>
-      ) : (
-        <>
-          <StyledCardWrapper>
+          </StyledModalWrapper>) : null}
             <StyledCard>
               <h2>{event.name}</h2>
               <p>
@@ -188,7 +184,6 @@ export default function EventDetails() {
             Delete
           </DeleteRequestButton>
         </>
-      )}
       <StyledFooter>WePlan</StyledFooter>
     </>
   );

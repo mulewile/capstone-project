@@ -4,6 +4,8 @@ import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 import { ExitLink, StyledLink } from "@/components/Link";
 import { LinkWrapper } from "@/components/Link";
+
+
 export const StyledSection = styled.div`
   margin: 0, auto;
   padding-bottom: 70px;

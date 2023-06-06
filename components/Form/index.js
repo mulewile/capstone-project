@@ -53,7 +53,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           type="text"
           id="name"
           name="name"
-          placeholder="e.g. James, Mum, KN Football Club"
+          placeholder="e.g. James, Mum"
           defaultValue={eventToEdit?.name}
           required
         />
@@ -101,7 +101,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           maxLength={300}
           id="ideas"
           name="ideas"
-          placeholder="e.g. Photo Booth, Suggest Lake Bo as holiday destination, Movie ticket as gift"
+          placeholder="e.g. Photo Booth, Movie ticket as gift"
           defaultValue={eventToEdit?.ideas}
         />
         <label htmlFor="guests">Guests:</label>
@@ -110,7 +110,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           maxLength={100}
           id="guests"
           name="guests"
-          placeholder="e.g. 20, Kim, Mat, Entire Frontend team"
+          placeholder="e.g. 20, Kim, Mat"
           defaultValue={eventToEdit?.guests}
         />
         <fieldset>
