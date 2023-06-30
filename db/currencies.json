@@ -1,0 +1,33 @@
+[
+    {
+      "code": "USD",
+      "symbol": "$",
+      "name": "US Dollar"
+    },
+    {
+      "code": "EUR",
+      "symbol": "€",
+      "name": "Euro"
+    },
+    {
+      "code": "AED",
+      "symbol": "AED",
+      "name": "United Arab Emirates Dirham"
+    },
+    {
+      "code": "UAH",
+      "symbol": "₴",
+      "name": "Ukrainian Hryvnia"
+    },
+    {
+      "code": "ZAR",
+      "symbol": "R",
+      "name": "South African Rand"
+    },
+    {
+      "code": "ZMK",
+      "symbol": "ZK",
+      "name": "Zambian Kwacha"
+    }
+  ]
+  

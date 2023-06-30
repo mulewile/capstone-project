@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { StyledLink } from "../Link";
 import { SaveButton } from "../Button";
-import { StyledHeader } from "../Header";
+import { default as currencies } from "../../db/currencies.json";
 import { LinkWrapper } from "../Link";
+import uuid4 from "uuid4";
 
 export const StyledForm = styled.form`
   max-width: 375px;
@@ -32,6 +33,14 @@ export const StyledForm = styled.form`
   fieldset {
     border-radius: 10px;
   }
+
+  select {
+    display: grid;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+  }
 `;
 
 export default function Form({ onSubmit, isEditing, eventToEdit }) {
@@ -44,17 +53,16 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
 
     onSubmit(eventData);
   }
-
+  console.log("Currency check", currencies);
   return (
     <>
-      <StyledHeader>Edit Event</StyledHeader>
       <StyledForm onSubmit={onEdit}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
           name="name"
-          placeholder="e.g. James, Mum, KN Football Club"
+          placeholder="e.g. James, Mum"
           defaultValue={eventToEdit?.name}
           required
         />
@@ -102,7 +110,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           maxLength={300}
           id="ideas"
           name="ideas"
-          placeholder="e.g. Photo Booth, Suggest Lake Bo as holiday destination, Movie ticket as gift"
+          placeholder="e.g. Photo Booth, Movie ticket as gift"
           defaultValue={eventToEdit?.ideas}
         />
         <label htmlFor="guests">Guests:</label>
@@ -111,11 +119,22 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           maxLength={100}
           id="guests"
           name="guests"
-          placeholder="e.g. 20, Kim, Mat, Entire Frontend team"
+          placeholder="e.g. 20, Kim, Mat"
           defaultValue={eventToEdit?.guests}
         />
         <fieldset>
           <legend>EXPENSES</legend>
+          <label htmlFor="currency">Currency</label>
+          <select name="currency" id="currency">
+            <option value="">
+              --{eventToEdit?.currency ? eventToEdit.currency : "choose"}--
+            </option>
+            {currencies.map((currency) => (
+              <option key={uuid4()} value={currency.symbol}>
+                {currency.code}
+              </option>
+            ))}
+          </select>
           <label htmlFor="eventBudget">Budget</label>
           <input
             type="number"

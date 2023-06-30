@@ -11,6 +11,7 @@ const eventSchema = new Schema({
   ideas: { type: String, required: false },
   guests: { type: String, required: false },
   eventBudget: { type: Number, required: false },
+  currency: { type: String, required: true },
   foodCosts: { type: Number, required: false },
   accomodationCosts: { type: Number, required: false },
   transportCosts: { type: Number, required: false },

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Form from "../../../components/Form";
 import { StyledFooter } from "@/components/Footer";
+import { StyledHeader } from "@/components/Header";
 
 export default function EditEvent() {
   const router = useRouter();
@@ -38,14 +39,13 @@ export default function EditEvent() {
   }
 
   if (!isReady || isLoading || error) {
-    return <h1>Loading..IT</h1>;
+    return <h1>Loading...</h1>;
   }
 
   return (
     <>
-      <div>
+     <StyledHeader>Edit Event</StyledHeader>
         <Form isEditing eventToEdit={event} onSubmit={onSubmit} />
-      </div>
       <StyledFooter>WePlan</StyledFooter>
     </>
   );

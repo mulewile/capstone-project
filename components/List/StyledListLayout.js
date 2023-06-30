@@ -13,6 +13,7 @@ export const StyledListItem = styled.li`
   color: #114037;
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
+  z-index: 2;
 
   &:hover {
     transform: translateY(-5px);

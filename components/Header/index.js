@@ -14,4 +14,5 @@ export const StyledHeader = styled.h1`
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
+  z-index: 3;
 `;

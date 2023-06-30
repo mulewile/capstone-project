@@ -14,6 +14,7 @@ export default function Expenses() {
   }
 
   const {
+    currency,
     foodCosts,
     accomodationCosts,
     transportCosts,
@@ -42,23 +43,52 @@ export default function Expenses() {
           <h3>EXPENSES</h3>
           <dl>
             <dt>Food & Drink</dt>
-            <dd>${foodCosts}</dd>
+            <dd>
+              {currency}
+              {foodCosts}
+            </dd>
             <dt>Accomodation</dt>
-            <dd>${accomodationCosts}</dd>
+            <dd>
+              {currency}
+              {accomodationCosts}
+            </dd>
             <dt>Transport</dt>
-            <dd>${transportCosts}</dd>
+            <dd>
+              {currency}
+              {transportCosts}
+            </dd>
             <dt>Gifts</dt>
-            <dd>${giftCosts}</dd>
+            <dd>
+              {currency}
+              {giftCosts}
+            </dd>
             <dt>Other Expenses</dt>
-            <dd>${otherEventExpenses}</dd>
+            <dd>
+              {currency}
+              {otherEventExpenses}
+            </dd>
           </dl>
-          <h4>AVAILABLE FUNDS ${eventBudget}</h4>
-          {totalExpenses > 1 ? <h4>TOTAL EXPENSES ${totalExpenses}</h4> : null}
+          <h4>
+            AVAILABLE FUNDS {currency}
+            {eventBudget}
+          </h4>
+          {totalExpenses > 1 ? (
+            <h4>
+              TOTAL EXPENSES {currency}
+              {totalExpenses}
+            </h4>
+          ) : null}
           {totalExpenses > eventFunds ? (
-            <h4>BUDGET DEFICIT ${totalExpenses - eventFunds}</h4>
+            <h4>
+              BUDGET DEFICIT {currency}
+              {totalExpenses - eventFunds}
+            </h4>
           ) : (
             totalExpenses > 1 && (
-              <h4>REMAINING FUNDS ${eventFunds - totalExpenses}</h4>
+              <h4>
+                REMAINING FUNDS {currency}
+                {eventFunds - totalExpenses}
+              </h4>
             )
           )}
         </>

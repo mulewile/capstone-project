@@ -18,7 +18,7 @@ export default function HomePage() {
       <div>
         <StyledImage
           src={homeImage}
-          alt="Main image before entering app"
+          alt="main image before entering app"
           width={375}
           height={667}
         />
