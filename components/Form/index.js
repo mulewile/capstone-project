@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { StyledLink } from "../Link";
 import { SaveButton } from "../Button";
-import { StyledHeader } from "../Header";
+import { default as currencies } from "../../db/currencies.json";
 import { LinkWrapper } from "../Link";
+import uuid4 from "uuid4";
 
 export const StyledForm = styled.form`
   max-width: 375px;
@@ -32,6 +33,14 @@ export const StyledForm = styled.form`
   fieldset {
     border-radius: 10px;
   }
+
+  select {
+    display: grid;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 13px;
+  }
 `;
 
 export default function Form({ onSubmit, isEditing, eventToEdit }) {
@@ -44,7 +53,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
 
     onSubmit(eventData);
   }
-
+  console.log("Currency check", currencies);
   return (
     <>
       <StyledForm onSubmit={onEdit}>
@@ -115,6 +124,17 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
         />
         <fieldset>
           <legend>EXPENSES</legend>
+          <label htmlFor="currency">Currency</label>
+          <select name="currency" id="currency">
+            <option value="">
+              --{eventToEdit?.currency ? eventToEdit.currency : "choose"}--
+            </option>
+            {currencies.map((currency) => (
+              <option key={uuid4()} value={currency.symbol}>
+                {currency.code}
+              </option>
+            ))}
+          </select>
           <label htmlFor="eventBudget">Budget</label>
           <input
             type="number"
