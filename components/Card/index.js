@@ -46,6 +46,10 @@ export const StyledCard = styled.article`
     padding: 0.5rem 0.5rem;
     background-color: lightgrey;
   }
+
+  dd {
+    gap: 0.5rem;
+  }
 `;
 
 export default function Card({ children }) {

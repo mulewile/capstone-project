@@ -53,7 +53,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
 
     onSubmit(eventData);
   }
-  console.log("Currency check", currencies);
+
   return (
     <>
       <StyledForm onSubmit={onEdit}>
@@ -81,11 +81,7 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
           type="datetime-local"
           id="date"
           name="date"
-          defaultValue={
-            eventToEdit?.date
-              ? new Date(eventToEdit.date).toISOString().slice(0, 16)
-              : null
-          }
+          defaultValue={eventToEdit?.date ? new Date(eventToEdit.date).toISOString().slice(0, 16) : null}
         />
         <label htmlFor="location">Location:</label>
         <input
@@ -125,13 +121,11 @@ export default function Form({ onSubmit, isEditing, eventToEdit }) {
         <fieldset>
           <legend>EXPENSES</legend>
           <label htmlFor="currency">Currency</label>
-          <select name="currency" id="currency">
-            <option value="">
-              --{eventToEdit?.currency ? eventToEdit.currency : "choose"}--
-            </option>
+          <select name="currency" id="currency" required>
+            <option value="">--{eventToEdit?.currency ? eventToEdit.currency : "choose"}--</option>
             {currencies.map((currency) => (
               <option key={uuid4()} value={currency.symbol}>
-                {currency.code}
+                {currency.symbol}
               </option>
             ))}
           </select>

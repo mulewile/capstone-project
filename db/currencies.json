@@ -21,12 +21,12 @@
     },
     {
       "code": "ZAR",
-      "symbol": "R",
+      "symbol": "ZAR",
       "name": "South African Rand"
     },
     {
       "code": "ZMK",
-      "symbol": "ZK",
+      "symbol": "ZMK",
       "name": "Zambian Kwacha"
     }
   ]
