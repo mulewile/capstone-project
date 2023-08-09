@@ -7,21 +7,28 @@ import { StyledFooter } from "@/components/Footer";
 export default function AddEvent() {
   const router = useRouter();
 
+  async function postEventToAPI(eventData) {
+    try {
+      const response = await fetch("/api/events", {
+        method: "POST",
+        body: JSON.stringify(eventData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.ok;
+    } catch (error) {
+      console.error("An error occurred:", error);
+      return false;
+    }
+  }
+
   async function handleSubmit(eventObject) {
     const id = uuid4();
     const eventData = { ...eventObject, id };
-
-    const response = await fetch("/api/events", {
-      method: "POST",
-      body: JSON.stringify(eventData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    router.push("/events/overview");
-
-    if (response.ok) {
+    const isSuccess = await postEventToAPI(eventData);
+    if (isSuccess) {
+      router.push("/events/overview");
     } else {
       console.error("Failed to add event");
     }
