@@ -8,12 +8,7 @@ export default function EditEvent() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
-  const {
-    data: event,
-    isLoading,
-    error,
-    mutate,
-  } = useSWR(id ? `/api/events/${id}` : null);
+  const { data: event, isLoading, error, mutate } = useSWR(id ? `/api/events/${id}` : null);
 
   if (!event) {
     return <h1>No Event Found</h1>;
@@ -44,8 +39,8 @@ export default function EditEvent() {
 
   return (
     <>
-     <StyledHeader>Edit Event</StyledHeader>
-        <Form isEditing eventToEdit={event} onSubmit={onSubmit} />
+      <StyledHeader>Edit Event</StyledHeader>
+      <Form eventToEdit={event} onSubmit={onSubmit} />
       <StyledFooter>WePlan</StyledFooter>
     </>
   );
