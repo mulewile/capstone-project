@@ -23,14 +23,20 @@ export default function AddEvent() {
     }
   }
 
-  async function handleSubmit(eventObject) {
-    const id = uuid4();
-    const eventData = { ...eventObject, id };
-    const isSuccess = await postEventToAPI(eventData);
-    if (isSuccess) {
-      router.push("/events/overview");
-    } else {
-      console.error("Failed to add event");
+  async function handleSubmit(eventData) {
+    try {
+      const id = uuid4();
+      const eventWithId = { ...eventData, id };
+
+      const isSuccess = await postEventToAPI(eventWithId);
+
+      if (isSuccess) {
+        router.push("/events/overview");
+      } else {
+        console.error("Failed to add the event. Please try again later.");
+      }
+    } catch (error) {
+      console.error("An error occurred while adding the event:", error);
     }
   }
 

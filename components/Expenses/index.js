@@ -13,88 +13,57 @@ export default function Expenses() {
     return <h1>Error fetching events</h1>;
   }
 
-  const {
-    currency,
-    foodCosts,
-    accomodationCosts,
-    transportCosts,
-    giftCosts,
-    otherEventExpenses,
-    eventBudget,
-  } = event;
-  const eventFunds = eventBudget;
+  const { currency, foodCosts, accomodationCosts, transportCosts, giftCosts, otherEventExpenses, eventBudget } = event;
 
-  const initialExpenses = [
-    foodCosts,
-    accomodationCosts,
-    transportCosts,
-    giftCosts,
-    otherEventExpenses,
-  ];
+  const initialExpenses = [foodCosts, accomodationCosts, transportCosts, giftCosts, otherEventExpenses];
 
-  const totalExpenses = initialExpenses.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  );
+  const totalExpenses = initialExpenses.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+  const availableFunds = eventBudget;
+  const budgetDeficit = totalExpenses > availableFunds ? totalExpenses - availableFunds : null;
+  const remainingFunds = totalExpenses <= availableFunds ? availableFunds - totalExpenses : null;
+
   return (
     <>
       {totalExpenses > 0.1 ? (
         <>
           <h3>EXPENSES</h3>
           <dl>
-            <dt>Food & Drink</dt>
-            <dd>
-              {currency}
-              {foodCosts}
-            </dd>
-            <dt>Accomodation</dt>
-            <dd>
-              {currency}
-              {accomodationCosts}
-            </dd>
-            <dt>Transport</dt>
-            <dd>
-              {currency}
-              {transportCosts}
-            </dd>
-            <dt>Gifts</dt>
-            <dd>
-              {currency}
-              {giftCosts}
-            </dd>
-            <dt>Other Expenses</dt>
-            <dd>
-              {currency}
-              {otherEventExpenses}
-            </dd>
+            <ExpenseItem title="Food & Drink" cost={foodCosts} currency={currency} />
+            <ExpenseItem title="Accomodation" cost={accomodationCosts} currency={currency} />
+            <ExpenseItem title="Transport" cost={transportCosts} currency={currency} />
+            <ExpenseItem title="Gifts" cost={giftCosts} currency={currency} />
+            <ExpenseItem title="Other Expenses" cost={otherEventExpenses} currency={currency} />
           </dl>
-          <h4>
-            AVAILABLE FUNDS {currency}
-            {eventBudget}
-          </h4>
-          {totalExpenses > 1 ? (
-            <h4>
-              TOTAL EXPENSES {currency}
-              {totalExpenses}
-            </h4>
-          ) : null}
-          {totalExpenses > eventFunds ? (
-            <h4>
-              BUDGET DEFICIT {currency}
-              {totalExpenses - eventFunds}
-            </h4>
-          ) : (
-            totalExpenses > 1 && (
-              <h4>
-                REMAINING FUNDS {currency}
-                {eventFunds - totalExpenses}
-              </h4>
-            )
-          )}
+          <FundsItem title="AVAILABLE FUNDS" cost={availableFunds} currency={currency} />
+          {totalExpenses > 1 && <FundsItem title="TOTAL EXPENSES" cost={totalExpenses} currency={currency} />}
+          {budgetDeficit && <FundsItem title="BUDGET DEFICIT" cost={budgetDeficit} currency={currency} />}
+          {remainingFunds && <FundsItem title="REMAINING FUNDS" cost={remainingFunds} currency={currency} />}
         </>
       ) : (
         <h4>EVENT HAS NO EXPENSES</h4>
       )}
     </>
+  );
+}
+
+function ExpenseItem({ title, cost, currency }) {
+  return (
+    <>
+      <dt>{title}</dt>
+      <dd>
+        {currency}
+        {cost}
+      </dd>
+    </>
+  );
+}
+
+function FundsItem({ title, cost, currency }) {
+  return (
+    <h4>
+      {title} {currency}
+      {cost}
+    </h4>
   );
 }

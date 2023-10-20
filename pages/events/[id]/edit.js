@@ -1,13 +1,15 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Form from "../../../components/Form";
-import { StyledFooter } from "@/components/Footer";
-import { StyledHeader } from "@/components/Header";
+import { StyledHeader } from "../../../components/Header";
+import { StyledFooter } from "../../../components/Footer";
 
 export default function EditEvent() {
   const router = useRouter();
-  const { isReady } = router;
-  const { id } = router.query;
+  const {
+    isReady,
+    query: { id },
+  } = router;
   const { data: event, isLoading, error, mutate } = useSWR(id ? `/api/events/${id}` : null);
 
   if (!event) {
@@ -16,20 +18,25 @@ export default function EditEvent() {
 
   async function onSubmit(editedEvent) {
     const eventId = editedEvent._id;
+    const apiUrl = eventId ? `/api/events/${eventId}` : null;
 
-    const response = await fetch(eventId ? `/api/events/${eventId}` : null, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editedEvent),
-    });
+    try {
+      const response = await fetch(apiUrl, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedEvent),
+      });
 
-    if (response.ok) {
-      mutate(editedEvent);
-      router.push(`/events/${eventId}`);
-    } else {
-      console.error(`Error: ${response.status}`);
+      if (response.ok) {
+        mutate(editedEvent);
+        router.push(`/events/${eventId}`);
+      } else {
+        console.error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
   }
 

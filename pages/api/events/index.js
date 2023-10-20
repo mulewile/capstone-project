@@ -5,18 +5,23 @@ export default async function handler(request, response) {
   await dbConnect();
 
   if (request.method === "GET") {
-    const events = await Event.find();
-    return response.status(200).json(events);
+    try {
+      const events = await Event.find();
+      response.status(200).json(events);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      response.status(500).json({ error: "Failed to fetch events." });
+    }
   }
 
   if (request.method === "POST") {
     try {
       const eventData = request.body;
-      await Event.create(eventData);
-
-      response.status(201).json({ status: "Event created" });
+      const event = await Event.create(eventData);
+      response.status(201).json({ status: "Event created", event });
     } catch (error) {
-      response.status(400).json({ error: error.message });
+      console.error("Error creating event:", error);
+      response.status(400).json({ error: "Failed to create event." });
     }
   }
 }

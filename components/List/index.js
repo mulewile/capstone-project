@@ -30,15 +30,9 @@ function eventCountDown(eventDate) {
     return "Elapsed Event";
   } else if (countdownObject.daysToEvent === 7) {
     return "Starts in a Week";
-  } else if (
-    countdownObject.daysToEvent === 30 ||
-    countdownObject.daysToEvent === 31
-  ) {
+  } else if (countdownObject.daysToEvent === 30 || countdownObject.daysToEvent === 31) {
     return "1 Month Remaining";
-  } else if (
-    countdownObject.daysToEvent === 365 ||
-    countdownObject.daysToEvent === 366
-  ) {
+  } else if (countdownObject.daysToEvent === 365 || countdownObject.daysToEvent === 366) {
     return "1 Year Remaining";
   } else {
     return `${countdownObject.daysToEvent} Days Remaining`;
@@ -49,14 +43,7 @@ export default function List() {
   const { data, error } = useSWR("/api/events");
 
   if (!data) {
-    return (
-      <StyledLoader
-        src={dataLoadImage}
-        width={375}
-        height={667}
-        alt="Events are loading ...!"
-      />
-    );
+    return <StyledLoader src={dataLoadImage} width={375} height={667} alt="Events are loading ...!" />;
   }
   if (error) {
     return <h1>Error fetching events</h1>;
