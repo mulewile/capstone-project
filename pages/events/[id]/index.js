@@ -11,12 +11,7 @@ import { StyledHeader } from "@/components/Header";
 import { StyledFooter } from "@/components/Footer";
 import { StyledModalWrapper, StyledModalContent } from "@/components/Modal";
 import { StyledLink } from "@/components/Link";
-import {
-  EventLikeButton,
-  DeleteConfirmButton,
-  DeleteRequestButton,
-  EditButton,
-} from "@/components/Button";
+import { EventLikeButton, DeleteConfirmButton, DeleteRequestButton, EditButton } from "@/components/Button";
 import { LinkWrapper } from "@/components/Link";
 import loadImage from "../../../public/images/pageLoad.png";
 
@@ -38,10 +33,7 @@ function formatDate(dateStamp) {
     hour12: true,
   };
 
-  const formattedDate = new Intl.DateTimeFormat(
-    navigator.language,
-    options
-  ).format(date);
+  const formattedDate = new Intl.DateTimeFormat(navigator.language, options).format(date);
   return formattedDate;
 }
 
@@ -51,6 +43,8 @@ export default function EventDetails() {
 
   const [deleteModal, setDeleteModal] = useState(false);
 
+  const [showExpenses, setShowExpenses] = useState(false);
+
   function handleModal() {
     setDeleteModal(!deleteModal);
   }
@@ -58,21 +52,10 @@ export default function EventDetails() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
-  const {
-    data: event,
-    isLoading,
-    error,
-  } = useSWR(id ? `/api/events/${id}` : null);
+  const { data: event, isLoading, error } = useSWR(id ? `/api/events/${id}` : null);
 
   if (!isReady || isLoading || error) {
-    return (
-      <StyledLoader
-        src={loadImage}
-        width={375}
-        height={667}
-        alt="Events are loading ...!"
-      />
-    );
+    return <StyledLoader src={loadImage} width={375} height={667} alt="Events are loading ...!" />;
   }
 
   if (!event) {
@@ -112,78 +95,88 @@ export default function EventDetails() {
   return (
     <>
       <StyledHeader>Details</StyledHeader>
-        <>
-          <StyledCardWrapper>
-            {deleteModal? (<StyledModalWrapper>
-            <StyledModalContent>
-              <p>Confirm Choice</p>
-            </StyledModalContent>
-            <DeleteConfirmButton
-              type="button"
-              onClick={() => {
-                playDelete();
-                handleDeleteEvent();
-              }}
-            >
-              Delete
-            </DeleteConfirmButton>
-            <Button type="button" onClick={() => setDeleteModal(false)}>
-              Keep
-            </Button>
-          </StyledModalWrapper>) : null}
-            <StyledCard>
-              <h2>{event.name}</h2>
-              <p>
-                Event: <span>{event.event}</span>
-              </p>
-              <p>
-                Date: <span>{formatDate(event.date)}</span>
-              </p>
-              <p>
-                Location: <span>{event.location}</span>
-              </p>
-              <p>
-                Tasks: <span>{event.tasks}</span>
-              </p>
-              <p>
-                Ideas, Message, Thoughts etc: <span>{event.ideas}</span>
-              </p>
-              <p>
-                Guests: <span>{event.guests}</span>
-              </p>
-              <Expenses />
-              <EventLikeButton
+      <>
+        <StyledCardWrapper>
+          {deleteModal ? (
+            <StyledModalWrapper>
+              <StyledModalContent>
+                <p>Confirm Choice</p>
+              </StyledModalContent>
+              <DeleteConfirmButton
                 type="button"
                 onClick={() => {
-                  playToggleLike();
-                  handleLikeEvent();
+                  playDelete();
+                  handleDeleteEvent();
                 }}
               >
-                {event.eventLikeStatus ? "Unlike" : "Like"}
-              </EventLikeButton>
-            </StyledCard>
-          </StyledCardWrapper>
-          <LinkWrapper>
-            <StyledLink href="/events/overview">
-              <span>Back</span>
-            </StyledLink>
-          </LinkWrapper>
-          <EditButton
-            onClick={() => {
-              router.push(`/events/${id}/edit`);
-            }}
-          >
-            Edit
-          </EditButton>
-          <DeleteRequestButton
-            type="button"
-            onClick={() => {
-              handleModal();
-            }}
-          >
-            Delete
-          </DeleteRequestButton>
-        </>
+                Delete
+              </DeleteConfirmButton>
+              <Button type="button" onClick={() => setDeleteModal(false)}>
+                Keep
+              </Button>
+            </StyledModalWrapper>
+          ) : null}
+          <StyledCard>
+            <h2>{event.name}</h2>
+            <p>
+              Event: <span>{event.event}</span>
+            </p>
+            <p>
+              Date: <span>{formatDate(event.date)}</span>
+            </p>
+            <p>
+              Location: <span>{event.location}</span>
+            </p>
+            <p>
+              Tasks: <span>{event.tasks}</span>
+            </p>
+            <p>
+              Ideas, Message, Thoughts etc: <span>{event.ideas}</span>
+            </p>
+            <p>
+              Guests: <span>{event.guests}</span>
+            </p>
+            <Button
+              type="button"
+              onClick={() => {
+                setShowExpenses(!showExpenses);
+              }}
+            >
+              {showExpenses ? "Hide Expenses" : "Show Expenses"}
+            </Button>
+            {showExpenses && <Expenses />}
+            <EventLikeButton
+              type="button"
+              onClick={() => {
+                playToggleLike();
+                handleLikeEvent();
+              }}
+            >
+              {event.eventLikeStatus ? "Unlike" : "Like"}
+            </EventLikeButton>
+          </StyledCard>
+        </StyledCardWrapper>
+        <LinkWrapper>
+          <StyledLink href="/events/overview">
+            <span>Back</span>
+          </StyledLink>
+        </LinkWrapper>
+        <EditButton
+          onClick={() => {
+            router.push(`/events/${id}/edit`);
+          }}
+        >
+          Edit
+        </EditButton>
+        <DeleteRequestButton
+          type="button"
+          onClick={() => {
+            handleModal();
+          }}
+        >
+          Delete
+        </DeleteRequestButton>
+      </>
       <StyledFooter>WePlan</StyledFooter>
     </>
   );
