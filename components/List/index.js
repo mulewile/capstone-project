@@ -21,21 +21,43 @@ function eventCountDown(eventDate) {
   };
 
   if (countdownObject.daysToEvent >= 2 && countdownObject.daysToEvent <= 7) {
-    return `Starts in ${countdownObject.daysToEvent} Days`;
+    return `🚀 Starts in ${countdownObject.daysToEvent} Days 🚀`;
   } else if (countdownObject.daysToEvent === 1) {
-    return "Starts Tomorrow";
+    return "🌟 Starts Tomorrow 🌟";
   } else if (countdownObject.daysToEvent === 0) {
-    return "Event is Today 🎉";
+    return "🎉 Event is Today 🎉";
   } else if (countdownObject.daysToEvent < 0) {
-    return "Elapsed Event";
+    return "⌛ Elapsed Event ⌛";
   } else if (countdownObject.daysToEvent === 7) {
-    return "Starts in a Week";
+    return "📅 Starts in a Week 📅";
   } else if (countdownObject.daysToEvent === 30 || countdownObject.daysToEvent === 31) {
-    return "1 Month Remaining";
+    return "📆 1 Month Remaining 📆";
   } else if (countdownObject.daysToEvent === 365 || countdownObject.daysToEvent === 366) {
-    return "1 Year Remaining";
+    return "🎈 1 Year Remaining 🎈";
   } else {
-    return `${countdownObject.daysToEvent} Days Remaining`;
+    const days = countdownObject.daysToEvent;
+    const pluralize = days > 1 ? "s" : "";
+
+    const hours = Math.floor((timeDifference % (1000 * 3600 * 24)) / (1000 * 3600));
+    const minutes = Math.floor((timeDifference % (1000 * 3600)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    const timeLeft = [];
+
+    if (days > 0) {
+      timeLeft.push(`${days} Day${pluralize}`);
+    }
+    if (hours > 0) {
+      timeLeft.push(`${hours} Hour${hours > 1 ? "s" : ""}`);
+    }
+    if (minutes > 0) {
+      timeLeft.push(`${minutes} Minute${minutes > 1 ? "s" : ""}`);
+    }
+    if (seconds > 0) {
+      timeLeft.push(`${seconds} Second${seconds > 1 ? "s" : ""}`);
+    }
+
+    return `⏳ ${timeLeft.join(" and ")} Remaining ⏳`;
   }
 }
 
