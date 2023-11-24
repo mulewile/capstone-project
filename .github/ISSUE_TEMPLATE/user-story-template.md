@@ -28,3 +28,9 @@ in order to [need]
 - [ ] task 2
 
 Size:
+
+## Task Duratiom
+Estimated time:
+Actual time spent:
+Difference: 
+
